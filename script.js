@@ -8,6 +8,11 @@ const scoreButtons = document.querySelectorAll(".scale button");
 
 let selectedScore = 0;
 
+// Hide response areas when the page loads
+responseBox.style.display = "none";
+randomMotivation.style.display = "none";
+scoreText.style.display = "none";
+
 const responses = {
     money: [
         "Okay. Money problems are fucking exhausting. Let's not try to solve your entire life in one sitting.",
@@ -136,27 +141,37 @@ function isImmediateDanger(text) {
 function showResponse() {
     const text = input.value.trim();
 
+    // Make response visible
+    responseBox.style.display = "block";
+
     if (!text) {
         responseBox.innerHTML =
             "Tell me what's going on first. I can't read minds. Yet.";
         return;
     }
 
+    // Serious situation
     if (isImmediateDanger(text) || selectedScore >= 9) {
         responseBox.innerHTML = `
             <strong>Okay. No jokes for this part.</strong><br><br>
+
             If you think you might hurt yourself right now,
             get around another person.
+
             Tell them directly:
             <strong>"I'm not safe by myself right now."</strong>
+
             <br><br>
+
             In Kenya, call <strong>999</strong> or <strong>112</strong>,
             or go to the nearest emergency department.
+
             Don't stay alone with this.
         `;
         return;
     }
 
+    // Normal response
     const category = getCategory(text);
     const categoryResponses = responses[category];
 
@@ -166,7 +181,9 @@ function showResponse() {
         ];
 
     const followUp =
-        followUps[Math.floor(Math.random() * followUps.length)];
+        followUps[
+            Math.floor(Math.random() * followUps.length)
+        ];
 
     responseBox.innerHTML = `
         ${response}<br><br>
@@ -174,30 +191,62 @@ function showResponse() {
     `;
 }
 
+
+// NUMBER SCALE
 scoreButtons.forEach(button => {
+
     button.addEventListener("click", () => {
+
         selectedScore = Number(button.dataset.score);
+
+        // Show selected score
+        scoreText.style.display = "block";
         scoreText.textContent = `You chose ${selectedScore}/10.`;
 
+        // Remove previous selection
         scoreButtons.forEach(btn => {
             btn.classList.remove("selected");
         });
 
+        // Highlight selected number
         button.classList.add("selected");
+
+        /*
+         * If the user has already written something,
+         * clicking the number immediately gives the response.
+         */
+        if (input.value.trim()) {
+            showResponse();
+        }
     });
+
 });
 
+
+// RESPOND BUTTON
 respondButton.addEventListener("click", showResponse);
 
+
+// ENTER KEY
 input.addEventListener("keydown", event => {
+
     if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
         showResponse();
     }
+
 });
 
+
+// RANDOM MOTIVATION
 randomButton.addEventListener("click", () => {
+
     const random =
-        motivations[Math.floor(Math.random() * motivations.length)];
+        motivations[
+            Math.floor(Math.random() * motivations.length)
+        ];
 
     randomMotivation.innerHTML = `<p>${random}</p>`;
+
+    randomMotivation.style.display = "block";
 });

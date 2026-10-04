@@ -1,4 +1,3 @@
-```js
 const input = document.getElementById("problem");
 const scoreText = document.getElementById("score-text");
 const responseBox = document.getElementById("response");
@@ -202,4 +201,3 @@ randomButton.addEventListener("click", () => {
 
     randomMotivation.innerHTML = `<p>${random}</p>`;
 });
-```

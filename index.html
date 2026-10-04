@@ -3,52 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Still Here.</title>
+<meta name="description" content="A place to land on a bad night.">
 
 <style>
-
-/* =========================
-   BASE
-========================= */
-
-* {
-    box-sizing: border-box;
+:root{
+  --ink:#171717;
+  --cream:#fff8dc;
+  --yellow:#ffd83d;
+  --blue:#a8e3ff;
+  --coral:#ff927d;
+  --lime:#dcef74;
+  --purple:#cdbdff;
+  --white:#fff;
 }
 
-html {
-    scroll-behavior: smooth;
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-    margin: 0;
-    background: #fff8dc;
-    color: #171717;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.55;
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.55;
 }
 
 button,
-textarea {
-    font-family: inherit;
+textarea{
+  font:inherit;
 }
 
-button {
-    cursor: pointer;
+button{
+  cursor:pointer;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-.container {
-    width: min(1000px, 90%);
-    margin: auto;
+.hidden{
+  display:none !important;
 }
 
-.hidden {
-    display: none !important;
+.container{
+  width:min(1040px,90%);
+  margin:auto;
 }
 
 
@@ -56,24 +60,43 @@ a {
    DOODLES
 ========================= */
 
-.doodle {
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
+.doodle{
+  position:absolute;
+  pointer-events:none;
+  z-index:1;
 }
 
-.hero-doodle {
-    top: 60px;
-    right: 8%;
-    width: 130px;
+.line{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
-.doodle-line {
-    fill: none;
-    stroke: #171717;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.hero-doodle{
+  right:6%;
+  top:45px;
+  width:150px;
+}
+
+.star-doodle{
+  left:4%;
+  bottom:50px;
+  width:90px;
+  transform:rotate(-10deg);
+}
+
+.board-doodle{
+  right:3%;
+  top:50px;
+  width:170px;
+}
+
+.help-doodle{
+  right:5%;
+  top:70px;
+  width:150px;
 }
 
 
@@ -81,58 +104,62 @@ a {
    HERO
 ========================= */
 
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding: 70px 0;
-    background: #ffd83d;
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  background:var(--yellow);
+  padding:70px 0;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 760px;
+.hero-content{
+  max-width:790px;
+  position:relative;
+  z-index:2;
 }
 
-.kicker {
-    display: inline-block;
-    padding: 7px 12px;
-    background: #171717;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    transform: rotate(-2deg);
+.kicker{
+  display:inline-block;
+  padding:7px 11px;
+  background:var(--ink);
+  color:white;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:3px;
+  transform:rotate(-2deg);
 }
 
-h1 {
-    font-size: clamp(72px, 15vw, 170px);
-    line-height: .79;
-    letter-spacing: -8px;
-    margin: 28px 0 45px;
+h1{
+  margin:30px 0 40px;
+  font-size:clamp(70px,15vw,170px);
+  line-height:.78;
+  letter-spacing:-8px;
 }
 
-.hero-copy {
-    max-width: 680px;
-    font-size: clamp(18px, 2.5vw, 24px);
+.hero-copy{
+  max-width:730px;
+  font-size:clamp(18px,2.3vw,23px);
 }
 
-.hero-copy p {
-    margin: 0 0 18px;
+.hero-copy p{
+  margin:0 0 18px;
 }
 
-.hero-copy strong {
-    font-weight: 900;
+.top-note{
+  margin-top:25px;
+  max-width:760px;
+  padding:18px 20px;
+  background:rgba(255,255,255,.6);
+  border:3px solid var(--ink);
 }
 
-.hero-buttons {
-    margin-top: 38px;
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+.buttons{
+  margin-top:30px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
 }
 
 
@@ -140,36 +167,35 @@ h1 {
    BUTTONS
 ========================= */
 
-.btn {
-    display: inline-block;
-    border: 3px solid #171717;
-    background: #171717;
-    color: white;
-    padding: 15px 21px;
-    font-weight: 900;
-    font-size: 14px;
-    letter-spacing: 1px;
-    transition: transform .15s ease, box-shadow .15s ease;
+.btn{
+  display:inline-block;
+  border:3px solid var(--ink);
+  background:var(--ink);
+  color:#fff;
+  padding:14px 20px;
+  font-weight:900;
+  letter-spacing:1px;
+  transition:.15s;
 }
 
-.btn:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 5px 5px 0 #171717;
+.btn:hover{
+  transform:translate(-3px,-3px);
+  box-shadow:5px 5px 0 var(--ink);
 }
 
-.btn-light {
-    background: #fff8dc;
-    color: #171717;
+.btn-light{
+  background:var(--cream);
+  color:var(--ink);
 }
 
-.btn-yellow {
-    background: #ffd83d;
-    color: #171717;
+.btn-coral{
+  background:var(--coral);
+  color:var(--ink);
 }
 
-.btn-coral {
-    background: #ff795f;
-    color: #171717;
+.btn-blue{
+  background:var(--blue);
+  color:var(--ink);
 }
 
 
@@ -177,122 +203,156 @@ h1 {
    SECTIONS
 ========================= */
 
-section {
-    padding: 100px 0;
-    position: relative;
-    overflow: hidden;
+section{
+  padding:100px 0;
+  position:relative;
+  overflow:hidden;
 }
 
-#talk {
-    background: #fff8dc;
+#talk{
+  background:var(--cream);
 }
 
-#board {
-    background: #9edfff;
+#board{
+  background:var(--blue);
 }
 
-#reality {
-    background: #ff795f;
+#distraction{
+  background:var(--lime);
 }
 
-#help {
-    background: #171717;
-    color: white;
+#weird{
+  background:var(--purple);
 }
 
-.section-label {
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    margin-bottom: 14px;
+#help{
+  background:var(--ink);
+  color:#fff;
 }
 
-h2 {
-    font-size: clamp(46px, 8vw, 90px);
-    line-height: .88;
-    letter-spacing: -4px;
-    margin: 0 0 45px;
+footer{
+  background:var(--yellow);
+  padding:60px 0;
+  text-align:center;
 }
 
-
-/* =========================
-   TALK
-========================= */
-
-.step {
-    max-width: 820px;
-    margin: auto;
+.section-label{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:3px;
+  margin-bottom:15px;
 }
 
-.step-number {
-    display: inline-block;
-    font-weight: 900;
-    font-size: 13px;
-    padding: 6px 10px;
-    background: #171717;
-    color: white;
-    transform: rotate(-2deg);
-    margin-bottom: 20px;
-}
-
-.step-title {
-    font-size: clamp(32px, 6vw, 65px);
-    line-height: .95;
-    margin-bottom: 16px;
-    font-weight: 900;
-}
-
-.step-subtitle {
-    color: #555;
-    font-size: 18px;
-    margin-bottom: 25px;
-}
-
-textarea {
-    width: 100%;
-    min-height: 190px;
-    resize: vertical;
-    padding: 22px;
-    border: 3px solid #171717;
-    background: white;
-    font-size: 18px;
-    outline: none;
-}
-
-textarea:focus {
-    box-shadow: 7px 7px 0 #9edfff;
-}
-
-.form-row {
-    margin-top: 20px;
+h2{
+  margin:0 0 42px;
+  font-size:clamp(45px,8vw,90px);
+  line-height:.88;
+  letter-spacing:-4px;
 }
 
 
 /* =========================
-   RESPONSE
+   CONVERSATION
 ========================= */
 
-.response-card {
-    margin-top: 35px;
-    padding: 28px;
-    background: white;
-    border: 3px solid #171717;
-    box-shadow: 8px 8px 0 #9edfff;
-    animation: appear .35s ease;
+.step{
+  max-width:840px;
+  margin:auto;
 }
 
-.response-tag {
-    display: inline-block;
-    background: #ff795f;
-    padding: 5px 9px;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin-bottom: 16px;
+.step-badge{
+  display:inline-block;
+  background:var(--ink);
+  color:#fff;
+  padding:6px 10px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+  transform:rotate(-2deg);
+  margin-bottom:20px;
 }
 
-.response-text {
-    font-size: 20px;
+.step-title{
+  font-size:clamp(34px,6vw,66px);
+  line-height:.92;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.sub{
+  max-width:760px;
+  font-size:18px;
+  color:#555;
+  margin-bottom:25px;
+}
+
+textarea{
+  width:100%;
+  min-height:190px;
+  padding:21px;
+  background:#fff;
+  border:3px solid var(--ink);
+  outline:none;
+  resize:vertical;
+  font-size:18px;
+}
+
+textarea:focus{
+  box-shadow:7px 7px 0 var(--blue);
+}
+
+.action-row{
+  margin-top:18px;
+}
+
+.panel{
+  margin-top:35px;
+  padding:28px;
+  background:#fff;
+  border:3px solid var(--ink);
+  box-shadow:8px 8px 0 var(--blue);
+  animation:appear .3s ease;
+}
+
+.response-tag{
+  display:inline-block;
+  background:var(--coral);
+  padding:5px 9px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-bottom:12px;
+}
+
+.response-text{
+  font-size:20px;
+}
+
+.choice-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.choice{
+  padding:16px;
+  background:#fff;
+  color:var(--ink);
+  border:3px solid var(--ink);
+  text-align:left;
+  font-weight:900;
+  transition:.15s;
+}
+
+.choice:hover{
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 var(--ink);
+}
+
+.choice.selected{
+  background:var(--ink);
+  color:#fff;
 }
 
 
@@ -300,278 +360,220 @@ textarea:focus {
    SCALE
 ========================= */
 
-.reveal-block {
-    margin-top: 70px;
-    animation: appear .35s ease;
+.score-panel{
+  background:var(--yellow);
+  box-shadow:8px 8px 0 var(--ink);
 }
 
-.scale-description {
-    max-width: 700px;
-    font-size: 18px;
-    margin-bottom: 20px;
+.scale{
+  display:grid;
+  grid-template-columns:repeat(10,1fr);
+  gap:7px;
+  margin-top:22px;
 }
 
-.scale {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 7px;
+.scale button{
+  min-height:55px;
+  background:#fff;
+  border:3px solid var(--ink);
+  font-weight:900;
+  font-size:18px;
 }
 
-.scale button {
-    border: 3px solid #171717;
-    background: #fff;
-    min-height: 55px;
-    font-size: 18px;
-    font-weight: 900;
-    transition: .15s ease;
+.scale button:hover{
+  transform:translateY(-3px);
 }
 
-.scale button:hover {
-    transform: translateY(-3px);
+.scale button.selected{
+  background:var(--ink);
+  color:#fff;
+  transform:translateY(-4px);
 }
 
-.scale button.selected {
-    background: #171717;
-    color: white;
-    transform: translateY(-4px);
+.scale-note{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+  font-size:12px;
+  font-weight:900;
 }
 
-.scale-legend {
-    margin-top: 14px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    font-weight: 900;
-}
-
-.selected-score {
-    margin-top: 18px;
-    font-size: 19px;
-    font-weight: 900;
+.score-read{
+  margin-top:18px;
+  font-weight:900;
+  font-size:19px;
 }
 
 
 /* =========================
-   SAFETY QUESTION
+   SAFETY
 ========================= */
 
-.safety-question {
-    margin-top: 75px;
-    padding: 35px;
-    background: #ff9c87;
-    border: 3px solid #171717;
-    box-shadow: 8px 8px 0 #171717;
+.safety-panel{
+  background:var(--coral);
+  box-shadow:8px 8px 0 var(--ink);
 }
 
-.safety-question h3 {
-    font-size: clamp(30px, 5vw, 55px);
-    line-height: .95;
-    margin: 0 0 14px;
+.safety-title{
+  margin-bottom:14px;
+  font-size:clamp(30px,5vw,58px);
+  line-height:.92;
+  font-weight:900;
 }
 
-.safety-question p {
-    font-size: 18px;
-    max-width: 700px;
+.safety-small{
+  max-width:760px;
+  font-size:18px;
 }
 
-.choice-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 25px;
+.safety-result{
+  margin-top:25px;
+  padding:24px;
+  background:#fff;
+  color:var(--ink);
+  border:3px solid var(--ink);
 }
 
-.choice {
-    padding: 17px;
-    border: 3px solid #171717;
-    background: white;
-    font-weight: 900;
-    text-align: left;
-    transition: .15s ease;
+.safety-result.serious{
+  background:var(--yellow);
 }
 
-.choice:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 #171717;
+.safety-result.danger{
+  background:#ff5e57;
+}
+
+.action-box{
+  margin-top:20px;
+  padding:20px;
+  border:2px solid var(--ink);
+  background:rgba(255,255,255,.65);
 }
 
 
 /* =========================
-   SAFETY RESULT
+   INSPIRATION BOARD
 ========================= */
 
-.safety-result {
-    margin-top: 30px;
-    padding: 28px;
-    border: 3px solid #171717;
-    background: white;
-    animation: appear .35s ease;
+.board-intro{
+  max-width:730px;
+  font-size:20px;
 }
 
-.safety-result.danger {
-    background: #ff5f56;
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:45px;
 }
 
-.safety-result.serious {
-    background: #ffd83d;
+.card{
+  background:#fff;
+  border:3px solid var(--ink);
+  padding:27px;
+  min-height:310px;
+  box-shadow:7px 7px 0 var(--ink);
+  position:relative;
 }
 
-.safety-result h4 {
-    font-size: 28px;
-    margin: 0 0 12px;
+.card:nth-child(2n){
+  transform:rotate(1deg);
 }
 
-.action-box {
-    margin-top: 22px;
-    padding: 20px;
-    background: rgba(255,255,255,.65);
-    border: 2px solid #171717;
+.card:nth-child(3n){
+  transform:rotate(-1deg);
 }
 
-.action-box strong {
-    font-size: 20px;
+.card-num{
+  font-size:11px;
+  letter-spacing:3px;
+  font-weight:900;
+  color:#666;
+}
+
+.card h3{
+  font-size:29px;
+  line-height:1;
+  margin:10px 0 14px;
+}
+
+.card p{
+  color:#333;
+  font-size:17px;
+}
+
+.endline{
+  font-weight:900;
+  letter-spacing:2px;
+  margin-top:20px;
 }
 
 
 /* =========================
-   BOARD
+   DISTRACTION
 ========================= */
 
-.board-intro {
-    max-width: 680px;
-    font-size: 20px;
+.distraction-intro{
+  max-width:740px;
+  font-size:20px;
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    margin-top: 50px;
+.chaos-card{
+  margin-top:45px;
+  background:#fff;
+  border:3px solid var(--ink);
+  box-shadow:8px 8px 0 var(--ink);
+  padding:32px;
 }
 
-.card {
-    background: white;
-    border: 3px solid #171717;
-    padding: 27px;
-    position: relative;
-    min-height: 300px;
-    box-shadow: 7px 7px 0 #171717;
+.chaos-question{
+  font-size:clamp(30px,5vw,55px);
+  font-weight:900;
+  line-height:.92;
 }
 
-.card:nth-child(2) {
-    transform: rotate(1deg);
+.chaos-answer{
+  display:none;
+  margin-top:22px;
+  padding:24px;
+  background:var(--cream);
+  border:3px solid var(--ink);
 }
 
-.card:nth-child(3) {
-    transform: rotate(-1deg);
+.chaos-answer.visible{
+  display:block;
 }
 
-.card:nth-child(4) {
-    transform: rotate(1deg);
+.random-box{
+  display:none;
+  margin-top:25px;
+  padding:28px;
+  background:#fff;
+  border:3px solid var(--ink);
+  font-size:21px;
 }
 
-.card:nth-child(5) {
-    transform: rotate(-1deg);
-}
-
-.card:nth-child(6) {
-    transform: rotate(1deg);
-}
-
-.card-number {
-    font-size: 11px;
-    letter-spacing: 3px;
-    font-weight: 900;
-    color: #555;
-}
-
-.card h3 {
-    font-size: 31px;
-    margin: 10px 0;
-}
-
-.card p {
-    font-size: 17px;
-    color: #333;
-}
-
-.card-ending {
-    margin-top: 22px;
-    font-weight: 900;
-    letter-spacing: 2px;
+.random-box.visible{
+  display:block;
 }
 
 
 /* =========================
-   SEX WORKER QUESTION
+   WEIRD SECTION
 ========================= */
 
-.stupid-question {
-    margin-top: 65px;
-    background: #d9ed72;
-    border: 3px solid #171717;
-    padding: 35px;
-    box-shadow: 8px 8px 0 #171717;
+.weird-box{
+  max-width:820px;
+  padding:34px;
+  background:var(--cream);
+  border:3px solid var(--ink);
+  box-shadow:8px 8px 0 var(--ink);
+  font-size:20px;
 }
 
-.stupid-question h3 {
-    margin: 0 0 8px;
-    font-size: 40px;
-    line-height: .95;
-}
-
-.stupid-question p {
-    max-width: 700px;
-}
-
-.stupid-answer {
-    margin-top: 22px;
-    padding: 25px;
-    background: white;
-    border: 3px solid #171717;
-    display: none;
-    animation: appear .3s ease;
-}
-
-.stupid-answer.visible {
-    display: block;
-}
-
-
-/* =========================
-   RANDOM MOTIVATION
-========================= */
-
-.random-box {
-    margin-top: 25px;
-    background: white;
-    border: 3px solid #171717;
-    padding: 30px;
-    font-size: 21px;
-    min-height: 110px;
-    display: none;
-}
-
-.random-box.visible {
-    display: block;
-    animation: appear .3s ease;
-}
-
-
-/* =========================
-   REALITY
-========================= */
-
-.reality-box {
-    max-width: 780px;
-    padding: 35px;
-    border: 3px solid #171717;
-    background: #fff8dc;
-    box-shadow: 8px 8px 0 #171717;
-}
-
-.reality-box p {
-    font-size: 21px;
+.weird-warning{
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
 }
 
 
@@ -579,57 +581,52 @@ textarea:focus {
    HELP
 ========================= */
 
-.help-box {
-    max-width: 800px;
+.help-intro{
+  max-width:780px;
+  font-size:20px;
 }
 
-.help-main {
-    padding: 35px;
-    border: 3px solid white;
-    background: #252525;
+.help-box{
+  max-width:830px;
+  padding:32px;
+  background:#242424;
+  border:3px solid #fff;
 }
 
-.help-main h3 {
-    font-size: 32px;
-    margin-top: 0;
+.emergency{
+  margin-top:25px;
+  padding:22px;
+  background:#ff5e57;
+  color:var(--ink);
+  border:3px solid #fff;
 }
 
-.emergency {
-    margin-top: 25px;
-    padding: 22px;
-    background: #ff5f56;
-    color: #171717;
-    border: 3px solid white;
+.emergency-numbers{
+  font-size:38px;
+  font-weight:900;
+  margin:6px 0 15px;
 }
 
-.emergency-number {
-    font-size: 38px;
-    font-weight: 900;
+.personal{
+  margin-top:25px;
+  padding:22px;
+  background:#fff;
+  color:var(--ink);
+  border:3px solid #fff;
 }
 
-.personal-help {
-    margin-top: 25px;
-    padding: 22px;
-    background: white;
-    color: #171717;
-    border: 3px solid white;
+.phone{
+  font-size:30px;
+  font-weight:900;
+  margin:8px 0 18px;
 }
 
-.personal-phone {
-    font-size: 30px;
-    font-weight: 900;
-    margin: 10px 0 18px;
-}
-
-.hope {
-    margin-top: 50px;
-    font-size: clamp(35px, 7vw, 75px);
-    font-weight: 900;
-    line-height: .85;
-}
-
-.hope span {
-    display: block;
+.final-line{
+  margin-top:55px;
+  font-size:clamp(42px,8vw,86px);
+  line-height:.82;
+  font-weight:900;
+  letter-spacing:-4px;
 }
 
 
@@ -637,15 +634,9 @@ textarea:focus {
    FOOTER
 ========================= */
 
-footer {
-    background: #ffd83d;
-    padding: 60px 0;
-    text-align: center;
-}
-
-.footer-big {
-    font-size: 34px;
-    font-weight: 900;
+.footer-big{
+  font-size:38px;
+  font-weight:900;
 }
 
 
@@ -653,18 +644,16 @@ footer {
    ANIMATION
 ========================= */
 
-@keyframes appear {
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(14px);
+  }
 
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 
@@ -672,1702 +661,2426 @@ footer {
    MOBILE
 ========================= */
 
-@media (max-width: 700px) {
+@media(max-width:700px){
 
-    h1 {
-        letter-spacing: -5px;
-    }
+  h1{
+    letter-spacing:-5px;
+  }
 
-    .cards {
-        grid-template-columns: 1fr;
-    }
+  section{
+    padding:75px 0;
+  }
 
-    .choice-grid {
-        grid-template-columns: 1fr;
-    }
+  .cards,
+  .choice-grid{
+    grid-template-columns:1fr;
+  }
 
-    .scale {
-        gap: 3px;
-    }
+  .scale{
+    gap:3px;
+  }
 
-    .scale button {
-        min-height: 45px;
-        font-size: 14px;
-    }
+  .scale button{
+    min-height:46px;
+    font-size:14px;
+  }
 
-    .scale-legend {
-        font-size: 11px;
-    }
-
-    section {
-        padding: 75px 0;
-    }
+  .hero-doodle{
+    width:100px;
+    right:2%;
+  }
 
 }
-
 </style>
 </head>
 
 <body>
 
 
-<!-- =========================
+<!-- ==================================================
      HERO
-========================= -->
+================================================== -->
 
 <header class="hero">
 
-    <svg class="doodle hero-doodle" viewBox="0 0 140 140">
+<svg class="doodle hero-doodle" viewBox="0 0 160 160" aria-hidden="true">
 
-        <circle
-            cx="70"
-            cy="70"
-            r="35"
-            class="doodle-line"
-        />
+  <circle
+    cx="80"
+    cy="80"
+    r="38"
+    class="line"
+  />
 
-        <path
-            d="
-            M70 9 L70 25
-            M70 115 L70 131
-            M9 70 L25 70
-            M115 70 L131 70
-            M26 26 L38 38
-            M102 102 L114 114
-            M114 26 L102 38
-            M38 102 L26 114
-            "
-            class="doodle-line"
-        />
+  <path
+    d="
+      M80 8v20
+      M80 132v20
+      M8 80h20
+      M132 80h20
+      M29 29l14 14
+      M117 117l14 14
+      M131 29l-14 14
+      M43 117l-14 14
+    "
+    class="line"
+  />
 
-        <path
-            d="
-            M55 65 Q60 60 65 65
-            M75 65 Q80 60 85 65
-            M55 84 Q70 94 85 84
-            "
-            class="doodle-line"
-        />
+  <path
+    d="
+      M62 74q7-7 14 0
+      M84 74q7-7 14 0
+      M60 93q20 16 40 0
+    "
+    class="line"
+  />
 
-    </svg>
-
-
-    <div class="container hero-content">
-
-        <div class="kicker">
-            NO MOTIVATIONAL SPEECH.
-        </div>
-
-        <h1>
-            YOU'RE<br>
-            STILL<br>
-            HERE.
-        </h1>
+</svg>
 
 
-        <div class="hero-copy">
+<div class="container hero-content">
 
-            <p>
-                Maybe life is completely fucked right now.
-                Maybe you don't know what you're doing anymore.
-                Maybe something happened five minutes ago.
-            </p>
-
-            <p>
-                <strong>Fine.</strong>
-            </p>
-
-            <p>
-                This isn't therapy.
-                It isn't going to tell you to “think positive.”
-                It isn't going to pretend one inspirational
-                quote fixes your life.
-            </p>
-
-            <p>
-                You tell us what's going on.
-                We take it one thing at a time.
-            </p>
-
-            <p>
-                There will also be some stupid nonsense.
-                <strong>Because apparently that's necessary.</strong>
-            </p>
-
-        </div>
+  <div class="kicker">
+    A PLACE TO LAND ON A BAD NIGHT.
+  </div>
 
 
-        <div class="hero-buttons">
+  <h1>
+    YOU'RE<br>
+    STILL<br>
+    HERE.
+  </h1>
 
-            <a
-                href="#talk"
-                class="btn btn-light"
-            >
-                TELL ME WHAT'S GOING ON ↓
-            </a>
 
-            <a
-                href="#help"
-                class="btn btn-coral"
-            >
-                I NEED HELP NOW
-            </a>
+  <div class="hero-copy">
 
-        </div>
+    <p>
+      Maybe everything feels fucked right now.
+    </p>
 
-    </div>
+    <p>
+      Maybe you don't know what you're doing anymore.
+    </p>
+
+    <p>
+      That's okay. You don't have to explain everything.
+    </p>
+
+    <p>
+      You don't have to figure out your entire life tonight.
+      <strong>Just get through tonight.</strong>
+    </p>
+
+    <p>
+      This isn't therapy.
+      It's not here to tell you to think positive.
+      It's just a place to stop for a minute,
+      say what happened, and take the next step.
+    </p>
+
+  </div>
+
+
+  <div class="top-note">
+
+    <strong>
+      You are not being judged here.
+    </strong>
+
+    <br>
+
+    If you tell this site that you're in immediate danger,
+    the jokes stop. It will guide you toward another person
+    and emergency help.
+
+  </div>
+
+
+  <div class="buttons">
+
+    <a
+      href="#talk"
+      class="btn btn-light"
+    >
+      TELL ME WHAT'S GOING ON ↓
+    </a>
+
+    <a
+      href="#help"
+      class="btn btn-coral"
+    >
+      I NEED HELP NOW
+    </a>
+
+  </div>
+
+</div>
 
 </header>
 
 
 
-<!-- =========================
-     TALK
-========================= -->
+<!-- ==================================================
+     CONVERSATION
+================================================== -->
 
 <section id="talk">
 
-    <div class="container">
+<div class="container">
 
-        <div class="step">
+<div class="step">
 
-            <div class="step-number">
-                STEP 01
-            </div>
-
-            <div class="step-title">
-                WHAT THE FUCK<br>
-                IS GOING ON?
-            </div>
-
-            <div class="step-subtitle">
-                Don't write it nicely.
-                Don't make it sound intelligent.
-                Just tell me what happened.
-            </div>
+  <div class="step-badge">
+    STEP 01
+  </div>
 
 
-            <textarea
-                id="problem"
-                placeholder="Type it here..."
-            ></textarea>
+  <div class="step-title">
+    WHAT HAPPENED?
+  </div>
 
 
-            <div class="form-row">
-
-                <button
-                    id="respond-button"
-                    class="btn btn-yellow"
-                >
-                    TELL ME
-                </button>
-
-            </div>
+  <div class="sub">
+    You don't have to make it sound good.
+    Just tell me what happened.
+    Take your time. Say it however you need to.
+  </div>
 
 
-            <!-- RESPONSE -->
-
-            <div
-                id="response"
-                class="response-card hidden"
-            >
-
-                <div class="response-tag">
-                    OKAY.
-                </div>
-
-                <div
-                    id="response-content"
-                    class="response-text"
-                ></div>
-
-            </div>
+  <textarea
+    id="problem"
+    placeholder="Type it here..."
+  ></textarea>
 
 
-            <!-- SCALE -->
+  <div class="action-row">
 
-            <div
-                id="scale-step"
-                class="reveal-block hidden"
-            >
+    <button
+      id="tellButton"
+      class="btn btn-coral"
+    >
+      TELL ME
+    </button>
 
-                <div class="step-number">
-                    STEP 02
-                </div>
-
-                <div class="step-title">
-                    HOW HEAVY IS<br>
-                    IT RIGHT NOW?
-                </div>
-
-                <div class="scale-description">
-
-                    We're not rating your entire existence.
-
-                    <br><br>
-
-                    <strong>1</strong> = shitty day.
-                    <br>
-                    <strong>5</strong> = I'm really struggling.
-                    <br>
-                    <strong>10</strong> = I don't feel safe with myself.
-
-                </div>
+  </div>
 
 
-                <div class="scale">
+  <!-- FIRST RESPONSE -->
 
-                    <button data-score="1">1</button>
-                    <button data-score="2">2</button>
-                    <button data-score="3">3</button>
-                    <button data-score="4">4</button>
-                    <button data-score="5">5</button>
-                    <button data-score="6">6</button>
-                    <button data-score="7">7</button>
-                    <button data-score="8">8</button>
-                    <button data-score="9">9</button>
-                    <button data-score="10">10</button>
+  <div
+    id="firstResponse"
+    class="panel hidden"
+  >
 
-                </div>
+    <div class="response-tag">
+      OKAY.
+    </div>
 
+    <div
+      id="responseText"
+      class="response-text"
+    ></div>
 
-                <div class="scale-legend">
-
-                    <span>
-                        SHITTY DAY
-                    </span>
-
-                    <span>
-                        DON'T TRUST MYSELF
-                    </span>
-
-                </div>
+  </div>
 
 
-                <div
-                    id="selected-score"
-                    class="selected-score hidden"
-                ></div>
+  <!-- NEED -->
+
+  <div
+    id="needPanel"
+    class="panel hidden"
+  >
+
+    <div class="step-badge">
+      NEXT
+    </div>
+
+    <div class="step-title">
+      WHAT DO YOU NEED<br>
+      RIGHT NOW?
+    </div>
+
+    <div class="sub">
+      You don't have to want advice.
+      Sometimes you just need someone to stay with you
+      for a minute.
+    </div>
 
 
-                <!-- SAFETY QUESTION -->
+    <div class="choice-grid">
 
-                <div
-                    id="safety-question"
-                    class="safety-question hidden"
-                >
+      <button
+        class="choice need-choice"
+        data-need="talk"
+      >
+        TALK TO ME
+      </button>
 
-                    <div class="step-number">
-                        ONE SERIOUS QUESTION
-                    </div>
+      <button
+        class="choice need-choice"
+        data-need="distract"
+      >
+        DISTRACT ME
+      </button>
 
-                    <h3>
-                        HAVE YOU THOUGHT<br>
-                        ABOUT SUICIDE<br>
-                        OR HURTING YOURSELF?
-                    </h3>
-
-                    <p>
-                        You don't have to make the answer sound good.
-                        Just pick the one that's closest.
-                    </p>
-
-
-                    <div class="choice-grid">
-
-                        <button
-                            class="choice"
-                            data-safety="no"
-                        >
-                            NO.
-                        </button>
-
-                        <button
-                            class="choice"
-                            data-safety="recent"
-                        >
-                            YES — ONCE OR RECENTLY.
-                        </button>
-
-                        <button
-                            class="choice"
-                            data-safety="sometimes"
-                        >
-                            YES — SOMETIMES.
-                        </button>
-
-                        <button
-                            class="choice"
-                            data-safety="often"
-                        >
-                            YES — OFTEN.
-                        </button>
-
-                        <button
-                            class="choice"
-                            data-safety="now"
-                        >
-                            YES — RIGHT NOW.
-                        </button>
-
-                    </div>
-
-
-                    <div
-                        id="safety-result"
-                        class="safety-result hidden"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </div>
+      <button
+        class="choice need-choice"
+        data-need="help"
+      >
+        HELP ME FIGURE THIS OUT
+      </button>
 
     </div>
+
+  </div>
+
+
+  <!-- TALK PATH -->
+
+  <div
+    id="talkPath"
+    class="panel hidden"
+  >
+
+    <div class="step-badge">
+      KEEP GOING
+    </div>
+
+    <div
+      id="talkQuestion"
+      class="step-title"
+    ></div>
+
+    <div
+      id="talkSub"
+      class="sub"
+    ></div>
+
+
+    <textarea
+      id="talkAnswer"
+      placeholder="Say it however you need to..."
+    ></textarea>
+
+
+    <div class="action-row">
+
+      <button
+        id="talkContinue"
+        class="btn btn-blue"
+      >
+        KEEP GOING
+      </button>
+
+    </div>
+
+
+    <div
+      id="talkResponse"
+      class="response-text"
+      style="margin-top:25px;"
+    ></div>
+
+  </div>
+
+
+  <!-- HELP PATH -->
+
+  <div
+    id="helpPath"
+    class="panel hidden"
+  >
+
+    <div class="step-badge">
+      LET'S MAKE IT SMALLER
+    </div>
+
+    <div class="step-title">
+      WHAT PART IS<br>
+      HURTING MOST?
+    </div>
+
+    <div
+      id="helpChoices"
+      class="choice-grid"
+    ></div>
+
+    <div
+      id="helpResponse"
+      class="response-text"
+      style="margin-top:25px;"
+    ></div>
+
+  </div>
+
+
+  <!-- SCALE -->
+
+  <div
+    id="scorePanel"
+    class="panel score-panel hidden"
+  >
+
+    <div class="step-badge">
+      NEXT
+    </div>
+
+    <div class="step-title">
+      HOW BAD IS IT<br>
+      RIGHT NOW?
+    </div>
+
+    <div class="sub">
+      We're not rating your entire life.
+    </div>
+
+    <div>
+
+      <strong>1</strong>
+      — I'm having a shitty day.
+
+      <br>
+
+      <strong>5</strong>
+      — I'm really struggling.
+
+      <br>
+
+      <strong>10</strong>
+      — I don't feel safe with myself.
+
+    </div>
+
+
+    <div class="scale">
+
+      <button data-score="1">1</button>
+      <button data-score="2">2</button>
+      <button data-score="3">3</button>
+      <button data-score="4">4</button>
+      <button data-score="5">5</button>
+      <button data-score="6">6</button>
+      <button data-score="7">7</button>
+      <button data-score="8">8</button>
+      <button data-score="9">9</button>
+      <button data-score="10">10</button>
+
+    </div>
+
+
+    <div class="scale-note">
+
+      <span>
+        SHITTY DAY
+      </span>
+
+      <span>
+        DON'T FEEL SAFE
+      </span>
+
+    </div>
+
+
+    <div
+      id="scoreRead"
+      class="score-read"
+    ></div>
+
+
+    <!-- SAFETY -->
+
+    <div
+      id="safetyPanel"
+      class="panel safety-panel hidden"
+    >
+
+      <div class="step-badge">
+        ONE SERIOUS QUESTION
+      </div>
+
+      <div class="safety-title">
+        HAVE YOU THOUGHT ABOUT<br>
+        SUICIDE OR HURTING YOURSELF?
+      </div>
+
+      <div class="safety-small">
+        You don't have to make the answer sound good.
+        Pick whichever is closest.
+      </div>
+
+
+      <div class="choice-grid">
+
+        <button
+          class="choice safety-choice"
+          data-safety="no"
+        >
+          NO
+        </button>
+
+        <button
+          class="choice safety-choice"
+          data-safety="recent"
+        >
+          YES — ONCE OR RECENTLY
+        </button>
+
+        <button
+          class="choice safety-choice"
+          data-safety="sometimes"
+        >
+          YES — SOMETIMES
+        </button>
+
+        <button
+          class="choice safety-choice"
+          data-safety="often"
+        >
+          YES — OFTEN
+        </button>
+
+        <button
+          class="choice safety-choice"
+          data-safety="now"
+        >
+          YES — RIGHT NOW
+        </button>
+
+      </div>
+
+
+      <div
+        id="safetyResult"
+        class="safety-result hidden"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
 
 </section>
 
 
 
-<!-- =========================
-     UNQUALIFIED ADVISORY BOARD
-========================= -->
+<!-- ==================================================
+     INSPIRATION BOARD
+================================================== -->
 
 <section
-    id="board"
-    class="hidden"
+  id="board"
+  class="hidden"
 >
 
-    <div class="container">
+<svg
+  class="doodle board-doodle"
+  viewBox="0 0 170 170"
+  aria-hidden="true"
+>
 
-        <div class="section-label">
-            THE COMPLETELY UNQUALIFIED ADVISORY BOARD
-        </div>
+  <path
+    d="M20 130L55 45L90 130Z"
+    class="line"
+  />
 
-        <h2>
-            STILL<br>
-            HERE.
-        </h2>
+  <path
+    d="M55 45q30 20 55 0"
+    class="line"
+  />
 
-        <div class="board-intro">
+  <circle
+    cx="55"
+    cy="85"
+    r="4"
+  />
 
-            You've survived the serious part.
+  <circle
+    cx="70"
+    cy="78"
+    r="4"
+  />
 
-            <br><br>
+</svg>
 
-            Now for some people who have absolutely no
-            business giving life advice.
 
-        </div>
+<div class="container">
 
+  <div class="section-label">
+    THE PEOPLE WEIRDLY TRUST
+  </div>
 
-        <div class="cards">
+  <h2>
+    STILL<br>
+    HERE.
+  </h2>
 
+  <div class="board-intro">
 
-            <!-- HOMER -->
+    These people aren't qualified to solve your life.
 
-            <article class="card">
+    <br><br>
 
-                <div class="card-number">
-                    01
-                </div>
+    That's probably for the best.
 
-                <h3>
-                    HOMER SIMPSON
-                </h3>
+  </div>
 
-                <p>
-                    This man is spectacularly stupid.
-                </p>
 
-                <p>
-                    Somehow he got a wife, three children,
-                    a house, a job and decades of tomorrow.
-                </p>
+  <div class="cards">
 
-                <p>
-                    He has made decisions that probably
-                    should have involved several professionals
-                    and a clipboard.
-                </p>
 
-                <div class="card-ending">
-                    STILL HERE.
-                </div>
+    <!-- HOMER -->
 
-            </article>
+    <article class="card">
 
+      <div class="card-num">
+        01
+      </div>
 
-            <!-- GUTS -->
+      <h3>
+        HOMER SIMPSON
+      </h3>
 
-            <article class="card">
+      <p>
+        This man is spectacularly stupid.
+      </p>
 
-                <div class="card-number">
-                    02
-                </div>
+      <p>
+        Somehow he got a wife, three children,
+        a house, a job and decades of tomorrow.
+      </p>
 
-                <h3>
-                    GUTS — BERSERK
-                </h3>
+      <p>
+        He has made decisions that probably should
+        have involved several professionals and a clipboard.
+      </p>
 
-                <p>
-                    This guy's life is basically one continuous
-                    sequence of terrible events.
-                </p>
+      <div class="endline">
+        STILL HERE.
+      </div>
 
-                <p>
-                    He doesn't keep going because everything
-                    is beautiful.
-                </p>
+    </article>
 
-                <p>
-                    Sometimes he just gets up.
-                </p>
 
-                <div class="card-ending">
-                    KEEP WALKING.
-                </div>
+    <!-- GUTS -->
 
-            </article>
+    <article class="card">
 
+      <div class="card-num">
+        02
+      </div>
 
-            <!-- LUFFY -->
+      <h3>
+        GUTS — BERSERK
+      </h3>
 
-            <article class="card">
+      <p>
+        His life is basically one terrible event
+        followed by another one.
+      </p>
 
-                <div class="card-number">
-                    03
-                </div>
+      <p>
+        He doesn't keep going because everything is
+        beautiful.
+      </p>
 
-                <h3>
-                    LUFFY — ONE PIECE
-                </h3>
+      <p>
+        Sometimes he just gets up.
+      </p>
 
-                <p>
-                    His entire dream is becoming the Pirate King.
-                </p>
+      <div class="endline">
+        KEEP WALKING.
+      </div>
 
-                <p>
-                    No sensible five-year strategy.
-                    No LinkedIn plan.
-                    Just a ridiculous dream and an
-                    unreasonable refusal to shut up about it.
-                </p>
+    </article>
 
-                <p>
-                    Your dream doesn't have to sound sensible yet.
-                </p>
 
-                <div class="card-ending">
-                    KEEP THE STUPID DREAM.
-                </div>
+    <!-- LUFFY -->
 
-            </article>
+    <article class="card">
 
+      <div class="card-num">
+        03
+      </div>
 
-            <!-- PETER -->
+      <h3>
+        LUFFY — ONE PIECE
+      </h3>
 
-            <article class="card">
+      <p>
+        His dream is becoming the Pirate King.
+      </p>
 
-                <div class="card-number">
-                    04
-                </div>
+      <p>
+        Which is an objectively ridiculous life plan.
+        No sensible five-year strategy.
+        No LinkedIn plan.
+        Just a stupidly big dream.
+      </p>
 
-                <h3>
-                    PETER GRIFFIN — FAMILY GUY
-                </h3>
+      <p>
+        Your dream doesn't have to sound sensible yet.
+      </p>
 
-                <p>
-                    Somehow this man has survived being Peter Griffin.
-                </p>
+      <div class="endline">
+        KEEP THE STUPID DREAM.
+      </div>
 
-                <p>
-                    That's honestly enough evidence that the
-                    human race is remarkably resilient.
-                </p>
+    </article>
 
-                <div class="card-ending">
-                    LOW BAR. CLEAR IT.
-                </div>
 
-            </article>
+    <!-- PETER -->
 
+    <article class="card">
 
-            <!-- SEX WORKER -->
+      <div class="card-num">
+        04
+      </div>
 
-            <article class="card">
+      <h3>
+        PETER GRIFFIN — FAMILY GUY
+      </h3>
 
-                <div class="card-number">
-                    05
-                </div>
+      <p>
+        Somehow this man has survived being Peter Griffin.
+      </p>
 
-                <h3>
-                    THE SEX WORKER
-                </h3>
+      <p>
+        That's honestly enough evidence that tomorrow
+        can contain some strange things.
+      </p>
 
-                <p>
-                    Gets fucked over.
-                </p>
+      <div class="endline">
+        LOW BAR. CLEAR IT.
+      </div>
 
-                <p>
-                    Dusts herself off, checks the time,
-                    figures out the next move and gets back
-                    out there when she's ready.
-                </p>
+    </article>
 
-                <p>
-                    Not inspirational.
-                    Just practical.
-                </p>
 
-                <div class="card-ending">
-                    STILL MOVING.
-                </div>
+    <!-- SEX WORKER -->
 
-            </article>
+    <article class="card">
 
+      <div class="card-num">
+        05
+      </div>
 
-            <!-- FUTURE SELF -->
+      <h3>
+        THE SEX WORKER
+      </h3>
 
-            <article class="card">
+      <p>
+        Gets fucked over.
+      </p>
 
-                <div class="card-number">
-                    06
-                </div>
+      <p>
+        Dusts herself off, checks the time,
+        figures out the next move and keeps going
+        when she's ready.
+      </p>
 
-                <h3>
-                    YOUR FUTURE SELF
-                </h3>
+      <p>
+        Not inspirational.
+        Just practical.
+      </p>
 
-                <p>
-                    You don't know who you're going to meet.
-                </p>
+      <div class="endline">
+        STILL MOVING.
+      </div>
 
-                <p>
-                    You don't know where you'll end up.
-                    You don't know what ridiculous thing
-                    you'll laugh about six months from now.
-                </p>
+    </article>
 
-                <p>
-                    You're making a decision about a story
-                    you haven't finished.
-                </p>
 
-                <div class="card-ending">
-                    DON'T LEAVE EARLY.
-                </div>
+    <!-- FUTURE SELF -->
 
-            </article>
+    <article class="card">
 
-        </div>
+      <div class="card-num">
+        06
+      </div>
 
+      <h3>
+        YOUR FUTURE SELF
+      </h3>
 
-        <!-- SEX WORKER QUESTION -->
+      <p>
+        You don't know who you're going to meet.
+      </p>
 
-        <div class="stupid-question">
+      <p>
+        You don't know where you'll end up.
+        You don't know what you'll be laughing about
+        six months from now.
+      </p>
 
-            <div class="section-label">
-                ONE COMPLETELY UNNECESSARY QUESTION
-            </div>
+      <p>
+        You haven't finished the story.
+      </p>
 
-            <h3>
-                WHAT WOULD<br>
-                A SEX WORKER DO?
-            </h3>
+      <div class="endline">
+        DON'T LEAVE EARLY.
+      </div>
 
-            <p>
-                Not because this is profound wisdom.
-                We're just trying something different.
-            </p>
+    </article>
 
+  </div>
 
-            <div class="choice-grid">
-
-                <button
-                    class="choice stupid-choice"
-                    data-answer="next"
-                >
-                    FIGURE OUT THE NEXT MOVE.
-                </button>
-
-                <button
-                    class="choice stupid-choice"
-                    data-answer="cry"
-                >
-                    CRY FIRST.
-                </button>
-
-                <button
-                    class="choice stupid-choice"
-                    data-answer="rest"
-                >
-                    TAKE FIVE.
-                </button>
-
-                <button
-                    class="choice stupid-choice"
-                    data-answer="all"
-                >
-                    PROBABLY ALL THREE.
-                </button>
-
-            </div>
-
-
-            <div
-                id="stupid-answer"
-                class="stupid-answer"
-            ></div>
-
-        </div>
-
-
-        <!-- RANDOM -->
-
-        <div style="margin-top:70px;">
-
-            <div class="section-label">
-                SERIOUSLY STUPID MOTIVATION
-            </div>
-
-            <h2>
-                NEED<br>
-                SOMETHING?
-            </h2>
-
-
-            <button
-                id="random-button"
-                class="btn btn-coral"
-            >
-                GIVE ME A RANDOM ONE
-            </button>
-
-
-            <div
-                id="random-motivation"
-                class="random-box"
-            ></div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 
-<!-- =========================
-     REALITY
-========================= -->
+<!-- ==================================================
+     DISTRACTION MODE
+================================================== -->
 
 <section
-    id="reality"
-    class="hidden"
+  id="distraction"
+  class="hidden"
 >
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-label">
-            ONE STUPID THOUGHT BEFORE YOU GO
-        </div>
+  <div class="section-label">
+    DISTRACTION MODE
+  </div>
 
-        <h2>
-            WHAT IF<br>
-            NONE OF THIS<br>
-            IS REAL?
-        </h2>
+  <h2>
+    ALRIGHT.<br>
+    LET'S BE<br>
+    STUPID.
+  </h2>
 
-        <div class="reality-box">
+  <div class="distraction-intro">
+    You chose distraction.
+    Fair enough.
+    The serious stuff is still here if you need it.
+    For now, here's some completely unnecessary nonsense.
+  </div>
 
-            <p>
-                Luffy isn't real.
-                Guts isn't real.
-                Homer isn't real.
-                Peter Griffin definitely isn't real.
-            </p>
 
-            <p>
-                They're characters somebody invented.
-            </p>
+  <!-- SEX WORKER -->
 
-            <p>
-                Which raises the completely unnecessary question:
-            </p>
+  <div class="chaos-card">
 
-            <p>
-                <strong>
-                    What if we're fictional too?
-                </strong>
-            </p>
+    <div class="section-label">
+      COMPLETELY UNNECESSARY QUESTION
+    </div>
 
-            <p>
-                No evidence.
-                Please don't make important life decisions
-                based on a website written in JavaScript.
-            </p>
+    <div class="chaos-question">
+      WHAT WOULD A SEX WORKER DO?
+    </div>
 
-            <p>
-                Maybe reality is a simulation.
-                Maybe consciousness is weird.
-                Maybe reality is just somebody's unfinished
-                JavaScript project.
-            </p>
+    <p>
+      Not because this is profound wisdom.
+      We're just trying something different.
+    </p>
 
-            <p>
-                <strong>
-                    Anyway.
-                </strong>
-            </p>
 
-            <p>
-                You're here.
-                Let's see what tomorrow does.
-            </p>
+    <div class="choice-grid">
 
-        </div>
+      <button
+        class="choice chaos-choice"
+        data-chaos="next"
+      >
+        FIGURE OUT THE NEXT MOVE
+      </button>
+
+      <button
+        class="choice chaos-choice"
+        data-chaos="cry"
+      >
+        CRY FIRST
+      </button>
+
+      <button
+        class="choice chaos-choice"
+        data-chaos="rest"
+      >
+        TAKE FIVE
+      </button>
+
+      <button
+        class="choice chaos-choice"
+        data-chaos="all"
+      >
+        PROBABLY ALL THREE
+      </button>
 
     </div>
+
+
+    <div
+      id="chaosAnswer"
+      class="chaos-answer"
+    ></div>
+
+  </div>
+
+
+  <!-- RANDOM QUESTIONS -->
+
+  <div class="chaos-card">
+
+    <div class="section-label">
+      IMPORTANT SCIENCE
+    </div>
+
+    <div class="chaos-question">
+      PICK YOUR NEXT PROBLEM
+    </div>
+
+
+    <div class="choice-grid">
+
+      <button
+        class="choice random-choice"
+        data-random="goat"
+      >
+        YOU OWN A GOAT NOW
+      </button>
+
+      <button
+        class="choice random-choice"
+        data-random="chicken"
+      >
+        A CHICKEN HAS JUDGED YOU
+      </button>
+
+      <button
+        class="choice random-choice"
+        data-random="alien"
+      >
+        ALIENS HAVE A QUESTION
+      </button>
+
+      <button
+        class="choice random-choice"
+        data-random="business"
+      >
+        START A TERRIBLE BUSINESS
+      </button>
+
+    </div>
+
+
+    <div
+      id="randomAnswer"
+      class="random-box"
+    ></div>
+
+  </div>
+
+
+  <!-- RANDOM MOTIVATION -->
+
+  <div style="margin-top:70px">
+
+    <div class="section-label">
+      FOR WHEN YOU NEED IT
+    </div>
+
+    <h2>
+      A LITTLE<br>
+      SOMETHING.
+    </h2>
+
+
+    <button
+      id="motivationButton"
+      class="btn btn-coral"
+    >
+      GIVE ME ONE
+    </button>
+
+
+    <div
+      id="motivationBox"
+      class="random-box"
+    ></div>
+
+  </div>
+
+</div>
 
 </section>
 
 
 
-<!-- =========================
+<!-- ==================================================
+     WEIRD REALITY
+================================================== -->
+
+<section
+  id="weird"
+  class="hidden"
+>
+
+<div class="container">
+
+  <div class="section-label">
+    ONE WEIRD THOUGHT
+  </div>
+
+  <h2>
+    WHAT IF NONE<br>
+    OF THIS IS REAL?
+  </h2>
+
+
+  <div class="weird-box">
+
+    <p>
+      Luffy isn't real.
+      Guts isn't real.
+      Homer isn't real.
+      Peter Griffin definitely isn't real.
+    </p>
+
+    <p>
+      They're characters somebody invented.
+    </p>
+
+    <p>
+      So here's a completely unnecessary thought:
+    </p>
+
+    <p>
+      <strong>
+        What if we're fictional too?
+      </strong>
+    </p>
+
+    <p>
+      No evidence.
+      Please do not make important life decisions
+      based on a website written in JavaScript.
+    </p>
+
+    <p>
+      Maybe reality is a simulation.
+      Maybe consciousness is weird.
+      Maybe reality is just somebody's unfinished project.
+    </p>
+
+    <p>
+      Anyway.
+    </p>
+
+    <p>
+      <strong>
+        You're here.
+        Let's see what tomorrow does.
+      </strong>
+    </p>
+
+    <div class="weird-warning">
+      SERIOUSLY: THIS IS A JOKE / THOUGHT EXPERIMENT,
+      NOT A CLAIM ABOUT REALITY.
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
      HELP
-========================= -->
+================================================== -->
 
 <section id="help">
 
-    <div class="container">
+<svg
+  class="doodle help-doodle"
+  viewBox="0 0 160 160"
+  aria-hidden="true"
+>
 
-        <div class="section-label">
-            IF THIS IS MORE THAN A BAD DAY
-        </div>
+  <circle
+    cx="80"
+    cy="80"
+    r="40"
+    class="line"
+  />
 
-        <h2>
-            IF YOU MIGHT<br>
-            HURT YOURSELF
-        </h2>
+  <path
+    d="M55 80q25-45 50 0"
+    class="line"
+  />
 
+  <path
+    d="M55 80q25 45 50 0"
+    class="line"
+  />
 
-        <div class="help-box">
+  <path
+    d="M40 115q40 25 80 0"
+    class="line"
+  />
 
-            <div class="help-main">
-
-                <h3>
-                    FORGET THE WEBSITE FOR A MINUTE.
-                </h3>
-
-                <p>
-                    Get around another person.
-                </p>
-
-                <p>
-                    Tell them directly:
-                </p>
-
-                <p>
-                    <strong>
-                        "I'm not safe being alone right now."
-                    </strong>
-                </p>
+</svg>
 
 
-                <div class="emergency">
+<div class="container">
 
-                    <div class="section-label">
-                        RIGHT NOW
-                    </div>
+  <div class="section-label">
+    IF THIS IS MORE THAN A BAD DAY
+  </div>
 
-                    <p>
-                        In Kenya, call:
-                    </p>
-
-                    <div class="emergency-number">
-                        999 / 112
-                    </div>
-
-                    <p>
-                        Or go to the nearest hospital emergency
-                        department.
-                    </p>
-
-                </div>
+  <h2>
+    IF YOU MIGHT<br>
+    HURT YOURSELF
+  </h2>
 
 
-                <!-- YOUR NUMBER -->
+  <div class="help-intro">
 
-                <div class="personal-help">
+    <p>
+      Forget the website for a minute.
+    </p>
 
-                    <div class="section-label">
-                        OR TALK TO THE PERSON WHO MADE THIS
-                    </div>
+    <p>
+      Get around another person.
+      Tell them directly that you are not safe alone.
+    </p>
 
-                    <p>
-                        Sometimes you don't want to explain
-                        everything to a stranger.
-                    </p>
-
-                    <div class="personal-phone">
-                        0100809972
-                    </div>
-
-                    <a
-                        href="tel:0100809972"
-                        class="btn btn-coral"
-                    >
-                        CALL ME
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
+  </div>
 
 
-        <div class="hope">
+  <div class="help-box">
 
-            <span>
-                HOPE,
-            </span>
+    <strong>
+      You can say:
+    </strong>
 
-            <span>
-                NOT
-            </span>
+    <p>
+      "I'm not safe being alone right now.
+      Please stay with me."
+    </p>
 
-            <span>
-                ROPE.
-            </span>
 
-        </div>
+    <div class="emergency">
+
+      <div class="section-label">
+        RIGHT NOW
+      </div>
+
+      <p>
+        If you are in immediate danger in Kenya:
+      </p>
+
+      <div class="emergency-numbers">
+        999 / 112
+      </div>
+
+      <p>
+        Or go to the nearest hospital emergency department.
+      </p>
 
     </div>
+
+
+    <div class="personal">
+
+      <div class="section-label">
+        TALK TO THE PERSON WHO MADE THIS
+      </div>
+
+      <p>
+        You can call me directly:
+      </p>
+
+      <div class="phone">
+        0100809972
+      </div>
+
+      <a
+        href="tel:0100809972"
+        class="btn btn-coral"
+      >
+        CALL ME
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="final-line">
+    YOU'RE STILL<br>
+    HERE.
+  </div>
+
+</div>
 
 </section>
 
 
 
-<!-- =========================
+<!-- ==================================================
      FOOTER
-========================= -->
+================================================== -->
 
 <footer>
 
-    <div class="footer-big">
-        STILL HERE.
-    </div>
+  <div class="footer-big">
+    STILL HERE.
+  </div>
 
-    <p>
-        You don't have to love life today.
-    </p>
+  <p>
+    You don't have to love today.
+  </p>
 
-    <p>
-        <strong>
-            Just don't quit tonight.
-        </strong>
-    </p>
+  <p>
+    <strong>
+      Just stay for tomorrow.
+    </strong>
+  </p>
 
 </footer>
 
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
-
-/* =========================
+/* ==================================================
    ELEMENTS
-========================= */
+================================================== */
 
 const input =
-    document.getElementById("problem");
+  document.getElementById("problem");
 
-const respondButton =
-    document.getElementById("respond-button");
+const tellButton =
+  document.getElementById("tellButton");
 
-const response =
-    document.getElementById("response");
+const firstResponse =
+  document.getElementById("firstResponse");
 
-const responseContent =
-    document.getElementById("response-content");
+const responseText =
+  document.getElementById("responseText");
 
-const scaleStep =
-    document.getElementById("scale-step");
+const needPanel =
+  document.getElementById("needPanel");
 
-const scaleButtons =
-    document.querySelectorAll(".scale button");
+const talkPath =
+  document.getElementById("talkPath");
 
-const selectedScore =
-    document.getElementById("selected-score");
+const talkQuestion =
+  document.getElementById("talkQuestion");
 
-const safetyQuestion =
-    document.getElementById("safety-question");
+const talkSub =
+  document.getElementById("talkSub");
+
+const talkAnswer =
+  document.getElementById("talkAnswer");
+
+const talkContinue =
+  document.getElementById("talkContinue");
+
+const talkResponse =
+  document.getElementById("talkResponse");
+
+const helpPath =
+  document.getElementById("helpPath");
+
+const helpChoices =
+  document.getElementById("helpChoices");
+
+const helpResponse =
+  document.getElementById("helpResponse");
+
+const scorePanel =
+  document.getElementById("scorePanel");
+
+const scoreButtons =
+  document.querySelectorAll("#scorePanel .scale button");
+
+const scoreRead =
+  document.getElementById("scoreRead");
+
+const safetyPanel =
+  document.getElementById("safetyPanel");
 
 const safetyButtons =
-    document.querySelectorAll("[data-safety]");
+  document.querySelectorAll(".safety-choice");
 
 const safetyResult =
-    document.getElementById("safety-result");
+  document.getElementById("safetyResult");
 
 const board =
-    document.getElementById("board");
+  document.getElementById("board");
 
-const reality =
-    document.getElementById("reality");
+const distraction =
+  document.getElementById("distraction");
 
-const randomButton =
-    document.getElementById("random-button");
+const weird =
+  document.getElementById("weird");
 
-const randomMotivation =
-    document.getElementById("random-motivation");
+const chaosButtons =
+  document.querySelectorAll(".chaos-choice");
 
-const stupidButtons =
-    document.querySelectorAll(".stupid-choice");
+const chaosAnswer =
+  document.getElementById("chaosAnswer");
 
-const stupidAnswer =
-    document.getElementById("stupid-answer");
+const randomButtons =
+  document.querySelectorAll(".random-choice");
+
+const randomAnswer =
+  document.getElementById("randomAnswer");
+
+const motivationButton =
+  document.getElementById("motivationButton");
+
+const motivationBox =
+  document.getElementById("motivationBox");
 
 
-let currentScore = 0;
+let category = "lost";
+let chosenNeed = "";
+let chosenScore = 0;
 
 
-/* =========================
-   RESPONSES
-========================= */
+/* ==================================================
+   DATA
+================================================== */
 
-const responses = {
+const categoryData = {
 
-    money: [
-        "Okay. Money problems are fucking exhausting. I'm not going to pretend a quote fixes that.",
-        "Yeah. Being broke can turn every tiny problem into a full-blown emergency.",
-        "Your bank account may currently be fighting for its life. Let's not let it convince you that YOU are the problem.",
-        "Money is a problem. It is not a measurement of whether you're worth a damn."
+  money:{
+    match:[
+      "money",
+      "broke",
+      "debt",
+      "rent",
+      "salary",
+      "jobless",
+      "mpesa",
+      "m-pesa"
     ],
 
-    work: [
-        "Another job problem. Fantastic. Because apparently adulthood needed a boss battle.",
-        "Getting rejected again can really start fucking with your head.",
-        "Yeah. Work is kicking your ass. We don't need to pretend otherwise.",
-        "You don't need your entire career figured out tonight."
-    ],
+    response:
+      "Okay. Money problems can make everything else feel impossible. Let's take this one piece at a time.",
 
-    relationship: [
-        "Ah. Romance. Humanity's longest-running source of unnecessary suffering.",
-        "Yeah. That one hurts.",
-        "Someone leaving can make the rest of your life look smaller than it actually is.",
-        "Right now it probably feels fucking enormous. That doesn't mean it stays that way."
-    ],
+    question:
+      "What part of the money problem is hurting you most?",
 
-    family: [
-        "Family problems are special because apparently you can't just block the entire bloodline.",
-        "You can love people and still be completely exhausted by them.",
-        "That sounds like a lot to carry.",
-        "You don't have to fix your whole family tonight."
-    ],
+    sub:
+      "The actual bills? Feeling behind? Depending on other people? Something else?",
 
-    lost: [
-        "Okay. You sound fucking lost.",
-        "You don't need a five-year plan tonight.",
-        "Maybe you're not lazy. Maybe you're exhausted.",
-        "Not knowing what to do next is different from having nowhere to go."
+    help:[
+      ["bills","THE MONEY ITSELF"],
+      ["behind","I FEEL LIKE I'M FALLING BEHIND"],
+      ["pressure","THE PRESSURE"],
+      ["future","I'M WORRIED ABOUT WHERE THIS IS GOING"]
     ]
+  },
+
+
+  work:{
+    match:[
+      "job",
+      "work",
+      "school",
+      "exam",
+      "career",
+      "college",
+      "graduat"
+    ],
+
+    response:
+      "Yeah. Not knowing what happens next with work can really mess with your head.",
+
+    question:
+      "What is bothering you most about work?",
+
+    sub:
+      "The money? The rejection? Feeling behind? Or not knowing what you actually want?",
+
+    help:[
+      ["bills","THE MONEY"],
+      ["rejection","THE REJECTION"],
+      ["behind","I FEEL BEHIND"],
+      ["future","I DON'T KNOW WHAT COMES NEXT"]
+    ]
+  },
+
+
+  relationship:{
+    match:[
+      "breakup",
+      "relationship",
+      "girlfriend",
+      "boyfriend",
+      "love",
+      "lonely",
+      "wife",
+      "husband"
+    ],
+
+    response:
+      "That hurts. Especially when you actually cared about the person.",
+
+    question:
+      "What part of this is hurting you the most?",
+
+    sub:
+      "Missing them? What happened? Feeling alone? Something you wish you had said?",
+
+    help:[
+      ["person","I MISS THE PERSON"],
+      ["hurt","WHAT THEY DID"],
+      ["alone","I FEEL ALONE"],
+      ["future","I DON'T KNOW WHAT HAPPENS NOW"]
+    ]
+  },
+
+
+  family:{
+    match:[
+      "family",
+      "mum",
+      "mom",
+      "dad",
+      "parent",
+      "brother",
+      "sister"
+    ],
+
+    response:
+      "Family problems are hard because you can't always just walk away from them.",
+
+    question:
+      "What part of the family situation is hurting you most?",
+
+    sub:
+      "The conflict? Worrying about someone? Feeling trapped? Something else?",
+
+    help:[
+      ["conflict","THE CONFLICT"],
+      ["worry","I'M WORRIED ABOUT SOMEONE"],
+      ["trapped","I FEEL TRAPPED"],
+      ["exhausted","I'M JUST EXHAUSTED"]
+    ]
+  },
+
+
+  lost:{
+    match:[],
+
+    response:
+      "You don't have to know what you want yet. We can start with what's bothering you right now.",
+
+    question:
+      "What part of this is weighing on you most?",
+
+    sub:
+      "The future? The present? Feeling stuck? Something you can't explain?",
+
+    help:[
+      ["future","THE FUTURE"],
+      ["stuck","I FEEL STUCK"],
+      ["pressure","THE PRESSURE"],
+      ["tired","I'M JUST TIRED"]
+    ]
+  }
 
 };
 
 
-/* =========================
-   FOLLOW-UP QUESTIONS
-========================= */
+const dangerWords = [
+  "kill myself",
+  "killing myself",
+  "suicide",
+  "end my life",
+  "take my life",
+  "want to die",
+  "hurt myself",
+  "harm myself",
+  "end it tonight"
+];
 
-const followUps = {
 
-    money: [
-        "Is it the actual money you need right now, or what the lack of it is making you feel about yourself?",
-        "Are you worried about getting through the week, or are you worried about where your whole life is going?",
-        "Would solving the money problem change the rest of this, or is there something underneath it?"
-    ],
+const deeperReplies = {
 
-    work: [
-        "Is it the rejection itself, or the feeling that you're going nowhere?",
-        "Are you tired of looking for work, or tired of feeling like you should have figured it out by now?",
-        "If the job situation magically improved tomorrow, would you actually feel better?"
-    ],
+  bills:
+    "Then let's think about the actual problem instead of making yourself feel guilty for having it.",
 
-    relationship: [
-        "Do you miss the person, or do you miss who you were when they were around?",
-        "Are you angry, heartbroken, or mostly just tired?",
-        "Do you actually want them back, or do you just want the pain to stop?"
-    ],
+  behind:
+    "Feeling behind can make every other person's life look like a race you're losing. It isn't.",
 
-    family: [
-        "Are you angry with them, worried about them, or just completely exhausted?",
-        "Is this something you can actually change, or are you carrying something that isn't yours?",
-        "Would getting away from it for one night make anything clearer?"
-    ],
+  pressure:
+    "Pressure can make everything feel urgent. Not everything needs to be solved tonight.",
 
-    lost: [
-        "What part scares you most — the future, the present, or feeling like everyone else is moving?",
-        "Do you actually not know what you want, or do you know and you're scared it won't work?",
-        "What's the smallest part of this mess you could deal with first?"
-    ]
+  future:
+    "You don't need the whole future. You need the next part.",
 
+  rejection:
+    "Being rejected hurts. It doesn't automatically tell you what you're worth.",
+
+  person:
+    "Missing someone doesn't mean you have to make a decision about them tonight.",
+
+  hurt:
+    "You can be angry about what happened without deciding what your entire future looks like from this moment.",
+
+  alone:
+    "Feeling alone and actually being alone are not the same problem. Let's see who you could be around.",
+
+  conflict:
+    "You don't have to win the whole argument tonight.",
+
+  worry:
+    "Worry can make you feel responsible for things you can't actually control.",
+
+  trapped:
+    "Let's look for one thing that gives you even a little more room.",
+
+  exhausted:
+    "Being exhausted changes how everything looks. You don't have to judge your whole life from an exhausted brain.",
+
+  stuck:
+    "Stuck is a place. It isn't your permanent address.",
+
+  tired:
+    "You don't have to make a huge decision while you're completely drained.",
+
+  next:
+    "Good. One next step is enough.",
+
+  space:
+    "Give yourself some room before making any big decision.",
+
+  someone:
+    "You don't have to keep the whole thing to yourself.",
+
+  tomorrow:
+    "Make tomorrow smaller. Pick one thing that would make the morning easier."
 };
 
 
-/* =========================
-   CATEGORY
-========================= */
+/* ==================================================
+   HELPERS
+================================================== */
 
-function getCategory(text) {
-
-    const lower =
-        text.toLowerCase();
-
-    if (
-        lower.includes("money") ||
-        lower.includes("broke") ||
-        lower.includes("debt") ||
-        lower.includes("rent") ||
-        lower.includes("salary") ||
-        lower.includes("jobless") ||
-        lower.includes("mpesa") ||
-        lower.includes("m-pesa")
-    ) {
-        return "money";
-    }
-
-    if (
-        lower.includes("job") ||
-        lower.includes("work") ||
-        lower.includes("school") ||
-        lower.includes("exam") ||
-        lower.includes("career") ||
-        lower.includes("college") ||
-        lower.includes("graduat")
-    ) {
-        return "work";
-    }
-
-    if (
-        lower.includes("breakup") ||
-        lower.includes("relationship") ||
-        lower.includes("girlfriend") ||
-        lower.includes("boyfriend") ||
-        lower.includes("love") ||
-        lower.includes("lonely") ||
-        lower.includes("wife") ||
-        lower.includes("husband")
-    ) {
-        return "relationship";
-    }
-
-    if (
-        lower.includes("family") ||
-        lower.includes("mum") ||
-        lower.includes("mom") ||
-        lower.includes("dad") ||
-        lower.includes("parent") ||
-        lower.includes("brother") ||
-        lower.includes("sister")
-    ) {
-        return "family";
-    }
-
-    return "lost";
+function pick(array){
+  return array[Math.floor(Math.random() * array.length)];
 }
 
 
-/* =========================
-   FIRST RESPONSE
-========================= */
+function show(element){
+  element.classList.remove("hidden");
+}
 
-respondButton.addEventListener("click", () => {
 
-    const text =
-        input.value.trim();
+function hide(element){
+  element.classList.add("hidden");
+}
 
-    if (!text) {
 
-        responseContent.innerHTML = `
-            Tell me what's going on first.
-            I can't read minds.
-            <br><br>
-            <strong>Yet.</strong>
-        `;
+function scrollToElement(element){
+  setTimeout(() => {
+    element.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+  },200);
+}
 
-        response.classList.remove("hidden");
 
-        response.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
+function detectCategory(text){
+
+  const lower =
+    text.toLowerCase();
+
+  for(const [name,data] of Object.entries(categoryData)){
+
+    if(
+      data.match.some(word =>
+        lower.includes(word)
+      )
+    ){
+
+      return name;
+
+    }
+
+  }
+
+  return "lost";
+}
+
+
+function containsDanger(text){
+
+  const lower =
+    text.toLowerCase();
+
+  return dangerWords.some(word =>
+    lower.includes(word)
+  );
+}
+
+
+/* ==================================================
+   FIRST MESSAGE
+================================================== */
+
+tellButton.addEventListener("click", () => {
+
+  const text =
+    input.value.trim();
+
+
+  if(!text){
+
+    responseText.innerHTML = `
+      <p>Okay. Tell me what happened.</p>
+      <p><strong>You don't have to make it sound good.</strong></p>
+    `;
+
+    show(firstResponse);
+    scrollToElement(firstResponse);
+
+    return;
+  }
+
+
+  /*
+     If the person directly mentions suicide/self-harm,
+     skip the normal interaction and go straight to help.
+  */
+
+  if(containsDanger(text)){
+
+    responseText.innerHTML = `
+      <p><strong>Okay. I'm taking that seriously.</strong></p>
+
+      <p>
+        Forget the clever parts of the website for a minute.
+        Get around another person and tell them what you just told me.
+      </p>
+
+      <div class="action-box">
+        <strong>
+          "I'm thinking about killing myself
+          and I don't feel safe alone."
+        </strong>
+      </div>
+    `;
+
+    show(firstResponse);
+
+    document
+      .getElementById("help")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+    return;
+  }
+
+
+  category =
+    detectCategory(text);
+
+
+  responseText.innerHTML = `
+    <p>
+      ${categoryData[category].response}
+    </p>
+  `;
+
+
+  show(firstResponse);
+  show(needPanel);
+
+
+  scrollToElement(needPanel);
+
+});
+
+
+/* ==================================================
+   ENTER KEY
+================================================== */
+
+input.addEventListener("keydown", event => {
+
+  if(
+    event.key === "Enter" &&
+    !event.shiftKey
+  ){
+
+    event.preventDefault();
+    tellButton.click();
+
+  }
+
+});
+
+
+/* ==================================================
+   WHAT DO YOU NEED?
+================================================== */
+
+document
+  .querySelectorAll(".need-choice")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      chosenNeed =
+        button.dataset.need;
+
+
+      document
+        .querySelectorAll(".need-choice")
+        .forEach(b =>
+          b.classList.remove("selected")
+        );
+
+
+      button.classList.add("selected");
+
+
+      hide(talkPath);
+      hide(helpPath);
+
+
+      /*
+         TALK TO ME
+      */
+
+      if(chosenNeed === "talk"){
+
+        talkQuestion.textContent =
+          categoryData[category].question;
+
+        talkSub.textContent =
+          categoryData[category].sub;
+
+        talkAnswer.value = "";
+        talkResponse.innerHTML = "";
+
+        show(talkPath);
+
+        scrollToElement(talkPath);
 
         return;
+      }
+
+
+      /*
+         HELP ME FIGURE THIS OUT
+      */
+
+      if(chosenNeed === "help"){
+
+        helpChoices.innerHTML = "";
+        helpResponse.innerHTML = "";
+
+        categoryData[category].help
+          .forEach(([key,label]) => {
+
+            const button =
+              document.createElement("button");
+
+            button.className = "choice";
+            button.textContent = label;
+
+
+            button.addEventListener("click", () => {
+
+              helpChoices
+                .querySelectorAll("button")
+                .forEach(b =>
+                  b.classList.remove("selected")
+                );
+
+
+              button.classList.add("selected");
+
+
+              helpResponse.innerHTML = `
+                <p>
+                  <strong>
+                    ${deeperReplies[key] || deeperReplies.next}
+                  </strong>
+                </p>
+              `;
+
+
+              show(scorePanel);
+
+              scrollToElement(scorePanel);
+
+            });
+
+
+            helpChoices.appendChild(button);
+
+          });
+
+
+        show(helpPath);
+
+        scrollToElement(helpPath);
+
+        return;
+      }
+
+
+      /*
+         DISTRACT ME
+
+         Still passes through safety checkpoint.
+      */
+
+      if(chosenNeed === "distract"){
+
+        show(scorePanel);
+
+        scrollToElement(scorePanel);
+
+      }
+
+    });
+
+  });
+
+
+/* ==================================================
+   TALK PATH CONTINUE
+================================================== */
+
+talkContinue.addEventListener("click", () => {
+
+  const answer =
+    talkAnswer.value.trim();
+
+
+  if(!answer){
+
+    talkResponse.innerHTML = `
+      <strong>
+        Take your time. Say it however you need to.
+      </strong>
+    `;
+
+  }else{
+
+    talkResponse.innerHTML = `
+      <p><strong>Okay. I hear you.</strong></p>
+
+      <p>
+        You don't need to solve everything
+        just because you've finally said it out loud.
+      </p>
+    `;
+
+  }
+
+
+  show(scorePanel);
+
+  scrollToElement(scorePanel);
+
+});
+
+
+talkAnswer.addEventListener("keydown", event => {
+
+  if(
+    event.key === "Enter" &&
+    !event.shiftKey
+  ){
+
+    event.preventDefault();
+
+    talkContinue.click();
+
+  }
+
+});
+
+
+/* ==================================================
+   SCALE
+================================================== */
+
+scoreButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    chosenScore =
+      Number(button.dataset.score);
+
+
+    scoreButtons.forEach(btn =>
+      btn.classList.remove("selected")
+    );
+
+
+    button.classList.add("selected");
+
+
+    scoreRead.textContent =
+      `${chosenScore}/10. Okay. Got it.`;
+
+
+    show(scoreRead);
+    show(safetyPanel);
+
+
+    scrollToElement(safetyPanel);
+
+  });
+
+});
+
+
+/* ==================================================
+   SAFETY QUESTION
+================================================== */
+
+safetyButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const answer =
+      button.dataset.safety;
+
+
+    hide(board);
+    hide(distraction);
+    hide(weird);
+
+
+    safetyResult.className =
+      "safety-result";
+
+
+    show(safetyResult);
+
+
+    /*
+       9 OR 10 = HARD STOP
+    */
+
+    if(chosenScore >= 9){
+
+      safetyResult.classList.add("danger");
+
+      safetyResult.innerHTML = `
+
+        <strong>
+          Okay. Stay with me for a minute.
+        </strong>
+
+        <p>
+          No jokes. No motivation.
+          Just the next safe move.
+        </p>
+
+        <p>
+          Because you rated this a 9 or 10,
+          I want you to treat tonight as a safety issue
+          even if your answer above was "no."
+        </p>
+
+        <div class="action-box">
+
+          <strong>
+            Get around another person.
+          </strong>
+
+          <br><br>
+
+          Tell them:
+
+          <br><br>
+
+          <strong>
+            "I'm really not okay tonight.
+            Please stay with me."
+          </strong>
+
+        </div>
+
+        <p>
+          If you're thinking about suicide or hurting yourself,
+          say that directly.
+        </p>
+
+        <p>
+          Call <strong>999</strong> or <strong>112</strong>,
+          or go to the nearest hospital emergency department.
+        </p>
+
+        <p>
+          You can also call <strong>0100809972</strong>.
+        </p>
+
+        <a
+          href="tel:0100809972"
+          class="btn btn-coral"
+        >
+          CALL NOW
+        </a>
+
+      `;
+
+
+      document
+        .getElementById("help")
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+
+      return;
+
     }
 
 
-    const category =
-        getCategory(text);
+    /*
+       RIGHT NOW
+    */
 
-    const possibleResponses =
-        responses[category];
+    if(answer === "now"){
 
-    const first =
-        possibleResponses[
-            Math.floor(
-                Math.random() *
-                possibleResponses.length
-            )
-        ];
+      safetyResult.classList.add("danger");
 
-    const possibleFollowUps =
-        followUps[category];
+      safetyResult.innerHTML = `
 
-    const question =
-        possibleFollowUps[
-            Math.floor(
-                Math.random() *
-                possibleFollowUps.length
-            )
-        ];
-
-
-    responseContent.innerHTML = `
+        <strong>
+          Okay. Stay with me for a minute.
+        </strong>
 
         <p>
-            ${first}
+          No jokes. No motivation.
+          Just the next safe move.
+        </p>
+
+        <div class="action-box">
+
+          <strong>
+            Get around another person.
+          </strong>
+
+          <br><br>
+
+          Tell them:
+
+          <br><br>
+
+          <strong>
+            "I'm thinking about killing myself
+            and I don't feel safe alone."
+          </strong>
+
+        </div>
+
+        <p>
+          In Kenya, call <strong>999</strong> or
+          <strong>112</strong>, or go to the nearest
+          hospital emergency department.
         </p>
 
         <p>
-            <strong>
-                ${question}
-            </strong>
+          You can also call <strong>0100809972</strong>.
         </p>
+
+        <a
+          href="tel:0100809972"
+          class="btn btn-coral"
+        >
+          CALL NOW
+        </a>
+
+      `;
+
+
+      document
+        .getElementById("help")
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+
+      return;
+
+    }
+
+
+    /*
+       OFTEN
+    */
+
+    if(answer === "often"){
+
+      safetyResult.classList.add("serious");
+
+      safetyResult.innerHTML = `
+
+        <strong>
+          Okay. I'm taking that seriously.
+        </strong>
+
+        <p>
+          You don't need to prove that you can
+          handle this alone.
+        </p>
+
+        <div class="action-box">
+
+          <strong>
+            Find someone you trust
+            and get around them tonight.
+          </strong>
+
+        </div>
+
+        <p>
+          You can keep talking here too,
+          but don't make this something you have
+          to carry by yourself.
+        </p>
+
+      `;
+
+
+      revealAfterSafety();
+
+      return;
+
+    }
+
+
+    /*
+       SOMETIMES / RECENT
+    */
+
+    if(
+      answer === "sometimes" ||
+      answer === "recent"
+    ){
+
+      safetyResult.classList.add("serious");
+
+      safetyResult.innerHTML = `
+
+        <strong>
+          Okay. Thanks for saying it plainly.
+        </strong>
+
+        <p>
+          Having the thought doesn't mean
+          you have to act on it.
+        </p>
+
+        <p>
+          Try not to sit alone with it tonight.
+        </p>
+
+      `;
+
+
+      revealAfterSafety();
+
+      return;
+
+    }
+
+
+    /*
+       NO
+    */
+
+    safetyResult.classList.add("serious");
+
+    safetyResult.innerHTML = `
+
+      <strong>
+        Okay. Thanks for answering honestly.
+      </strong>
+
+      <p>
+        We can leave that question there.
+      </p>
+
+      <p>
+        Now you can choose what you need:
+        something useful, or something completely ridiculous.
+      </p>
 
     `;
 
 
-    response.classList.remove("hidden");
+    revealAfterSafety();
 
-    /* NOW SHOW SCALE */
-
-    scaleStep.classList.remove("hidden");
-
-    scaleStep.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+  });
 
 });
 
 
-/* =========================
-   ENTER KEY
-========================= */
+/* ==================================================
+   AFTER SAFETY
+================================================== */
 
-input.addEventListener("keydown", event => {
+function revealAfterSafety(){
 
-    if (
-        event.key === "Enter" &&
-        !event.shiftKey
-    ) {
+  setTimeout(() => {
 
-        event.preventDefault();
+    if(chosenNeed === "distract"){
 
-        respondButton.click();
+      show(distraction);
+
+      scrollToElement(distraction);
+
+    }else{
+
+      show(board);
+
+      scrollToElement(board);
 
     }
 
-});
+  },600);
 
 
-/* =========================
-   SCALE
-========================= */
+  setTimeout(() => {
 
-scaleButtons.forEach(button => {
+    show(weird);
 
-    button.addEventListener("click", () => {
-
-        currentScore =
-            Number(
-                button.dataset.score
-            );
-
-
-        scaleButtons.forEach(btn => {
-            btn.classList.remove("selected");
-        });
-
-
-        button.classList.add("selected");
-
-
-        selectedScore.classList.remove("hidden");
-
-        selectedScore.textContent =
-            `Okay. ${currentScore}/10. I got you.`;
-
-
-        /* NOW SHOW SUICIDE QUESTION */
-
-        safetyQuestion.classList.remove("hidden");
-
-        safetyQuestion.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
-    });
-
-});
-
-
-/* =========================
-   SAFETY QUESTION
-========================= */
-
-safetyButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const choice =
-            button.dataset.safety;
-
-        safetyResult.classList.remove(
-            "hidden",
-            "danger",
-            "serious"
-        );
-
-
-        /* NO */
-
-        if (choice === "no") {
-
-            safetyResult.classList.add("serious");
-
-            safetyResult.innerHTML = `
-
-                <h4>
-                    Good. Thanks for answering it honestly.
-                </h4>
-
-                <p>
-                    We can leave that question there.
-                </p>
-
-                <p>
-                    Your problem is still your problem,
-                    but at least we're dealing with what's
-                    actually in front of us.
-                </p>
-
-                <div class="action-box">
-
-                    <strong>
-                        So. What's the next thing?
-                    </strong>
-
-                    <br><br>
-
-                    Not your entire life.
-                    Just the next thing.
-
-                </div>
-            `;
-
-            revealBoard();
-
-            return;
-        }
-
-
-        /* RECENT */
-
-        if (choice === "recent") {
-
-            safetyResult.classList.add("serious");
-
-            safetyResult.innerHTML = `
-
-                <h4>
-                    Okay. I'm taking that seriously.
-                </h4>
-
-                <p>
-                    Having the thought doesn't mean
-                    you have to act on it.
-                </p>
-
-                <p>
-                    You don't have to solve everything tonight.
-                </p>
-
-                <div class="action-box">
-
-                    <strong>
-                        Tonight's job:
-                    </strong>
-
-                    <br><br>
-
-                    Get through tonight without
-                    making a permanent decision.
-
-                </div>
-
-                <p>
-                    Get around someone you trust if you can.
-                </p>
-            `;
-
-            revealBoard();
-
-            return;
-        }
-
-
-        /* SOMETIMES */
-
-        if (choice === "sometimes") {
-
-            safetyResult.classList.add("serious");
-
-            safetyResult.innerHTML = `
-
-                <h4>
-                    Alright. That's important.
-                </h4>
-
-                <p>
-                    I'm not going to throw a motivational
-                    quote at you.
-                </p>
-
-                <p>
-                    Thoughts can get loud.
-                    You don't have to obey every thought
-                    your brain produces.
-                </p>
-
-                <div class="action-box">
-
-                    <strong>
-                        For tonight:
-                    </strong>
-
-                    <br><br>
-
-                    Try not to be alone with this.
-                    Find one person you can sit with,
-                    call, or message.
-
-                </div>
-            `;
-
-            revealBoard();
-
-            return;
-        }
-
-
-        /* OFTEN */
-
-        if (choice === "often") {
-
-            safetyResult.classList.add("serious");
-
-            safetyResult.innerHTML = `
-
-                <h4>
-                    Okay. We're taking this seriously now.
-                </h4>
-
-                <p>
-                    You don't need to prove that you can
-                    handle this alone.
-                </p>
-
-                <p>
-                    Repeated suicidal thoughts are something
-                    worth telling another person about.
-                </p>
-
-                <div class="action-box">
-
-                    <strong>
-                        Find someone tonight.
-                    </strong>
-
-                    <br><br>
-
-                    Friend.
-                    Family.
-                    Neighbour.
-                    Anyone trustworthy.
-
-                    <br><br>
-
-                    Don't sit alone pretending you're fine.
-
-                </div>
-            `;
-
-            revealBoard();
-
-            return;
-        }
-
-
-        /* RIGHT NOW */
-
-        if (choice === "now") {
-
-            safetyResult.classList.add("danger");
-
-            safetyResult.innerHTML = `
-
-                <h4>
-                    Okay. Forget the website for a second.
-                </h4>
-
-                <p>
-                    If you think you might act on this right now,
-                    get around another person.
-                </p>
-
-                <div class="action-box">
-
-                    <strong>
-                        Tell them exactly:
-                    </strong>
-
-                    <br><br>
-
-                    "I'm thinking about killing myself
-                    and I don't feel safe alone."
-
-                </div>
-
-                <p>
-                    Call <strong>999</strong> or
-                    <strong>112</strong>, or go to the
-                    nearest hospital emergency department.
-                </p>
-
-                <p>
-                    You can also call:
-                    <strong>0100809972</strong>
-                </p>
-
-                <a
-                    href="tel:0100809972"
-                    class="btn btn-coral"
-                >
-                    CALL NOW
-                </a>
-
-                <p>
-                    Don't stay alone with this.
-                </p>
-
-            `;
-
-            document.getElementById("help")
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
-
-            return;
-        }
-
-    });
-
-});
-
-
-/* =========================
-   REVEAL BOARD
-========================= */
-
-function revealBoard() {
-
-    setTimeout(() => {
-
-        board.classList.remove("hidden");
-
-        board.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }, 700);
-
-
-    setTimeout(() => {
-
-        reality.classList.remove("hidden");
-
-    }, 1300);
+  },1100);
 
 }
 
 
-/* =========================
-   SEX WORKER QUESTION
-========================= */
+/* ==================================================
+   DISTRACTION MODE
+================================================== */
 
-stupidButtons.forEach(button => {
+chaosButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+  button.addEventListener("click", () => {
 
-        const answer =
-            button.dataset.answer;
-
-        stupidAnswer.classList.add("visible");
+    const answer =
+      button.dataset.chaos;
 
 
-        if (answer === "next") {
-
-            stupidAnswer.innerHTML = `
-                <strong>
-                    Exactly.
-                </strong>
-                <br><br>
-                Figure out the next move.
-                Not the next ten years.
-            `;
-
-        }
+    show(chaosAnswer);
 
 
-        if (answer === "cry") {
+    if(answer === "next"){
 
-            stupidAnswer.innerHTML = `
-                Honestly?
-                <strong>Fair.</strong>
-                <br><br>
-                Cry.
-                Wash your face.
-                Then decide what happens next.
-            `;
+      chaosAnswer.innerHTML = `
+        <strong>Exactly.</strong>
+        <br><br>
+        Figure out the next move.
+        Not the next ten years.
+      `;
 
-        }
+    }
 
 
-        if (answer === "rest") {
+    if(answer === "cry"){
 
-            stupidAnswer.innerHTML = `
-                Also valid.
-                <br><br>
-                Resting isn't quitting.
-                Sometimes your brain is running
-                on approximately three percent battery.
-            `;
+      chaosAnswer.innerHTML = `
+        Honestly?
+        <strong>Fair.</strong>
+        <br><br>
+        Cry.
+        Wash your face.
+        Take five.
+        Then decide what happens next.
+      `;
 
-        }
-
-
-        if (answer === "all") {
-
-            stupidAnswer.innerHTML = `
-                <strong>
-                    Correct answer.
-                </strong>
-
-                <br><br>
-
-                Get fucked over.
-                Dust yourself off.
-                Cry if necessary.
-                Take five.
-                Figure out the next move.
-
-                <br><br>
-
-                <strong>
-                    Still here.
-                </strong>
-            `;
-
-        }
+    }
 
 
-        stupidAnswer.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
+    if(answer === "rest"){
 
-    });
+      chaosAnswer.innerHTML = `
+        Also valid.
+        <br><br>
+        Resting isn't quitting.
+        Sometimes your brain is running
+        on approximately three percent battery.
+      `;
+
+    }
+
+
+    if(answer === "all"){
+
+      chaosAnswer.innerHTML = `
+        <strong>
+          Correct answer.
+        </strong>
+
+        <br><br>
+
+        Get fucked over.
+        Dust yourself off.
+        Cry if necessary.
+        Take five.
+        Figure out the next move.
+
+        <br><br>
+
+        <strong>
+          STILL HERE.
+        </strong>
+      `;
+
+    }
+
+
+    scrollToElement(chaosAnswer);
+
+  });
 
 });
 
 
-/* =========================
+/* ==================================================
+   RANDOM QUESTIONS
+================================================== */
+
+randomButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const answer =
+      button.dataset.random;
+
+
+    show(randomAnswer);
+
+
+    if(answer === "goat"){
+
+      randomAnswer.innerHTML = `
+        <strong>
+          Congratulations.
+        </strong>
+
+        <br><br>
+
+        You own a goat now.
+        Your financial situation has somehow become
+        more complicated.
+      `;
+
+    }
+
+
+    if(answer === "chicken"){
+
+      randomAnswer.innerHTML = `
+        <strong>
+          The chicken has judged you.
+        </strong>
+
+        <br><br>
+
+        You cannot appeal.
+      `;
+
+    }
+
+
+    if(answer === "alien"){
+
+      randomAnswer.innerHTML = `
+        <strong>
+          The aliens have one question:
+        </strong>
+
+        <br><br>
+
+        Why do humans keep saying
+        "I'll start tomorrow"?
+      `;
+
+    }
+
+
+    if(answer === "business"){
+
+      randomAnswer.innerHTML = `
+        <strong>
+          Terrible idea:
+        </strong>
+
+        <br><br>
+
+        A shop that only sells one sock.
+        No pairs.
+        Just socks.
+      `;
+
+    }
+
+
+    scrollToElement(randomAnswer);
+
+  });
+
+});
+
+
+/* ==================================================
    RANDOM MOTIVATION
-========================= */
+================================================== */
 
 const motivations = [
 
-    "Luffy has an absolutely ridiculous dream and apparently decided that was enough reason to keep moving.",
+  "You don't need to know exactly where you're going. You need enough room to find out.",
 
-    "Guts has had roughly zero peaceful days and is still somehow clocking in tomorrow.",
+  "Luffy has a ridiculous dream and somehow treats it like a completely reasonable life objective.",
 
-    "Homer Simpson is living proof that a person can make an astonishing number of terrible decisions and still somehow wake up the next morning.",
+  "Guts has had almost no peaceful days and still keeps getting up.",
 
-    "Maybe your life isn't finished. Maybe you're just stuck in the really shitty middle chapter.",
+  "Homer Simpson has somehow managed to create a family and survive decades of his own decisions.",
 
-    "There are people you haven't met yet and stupid things you haven't laughed at yet.",
+  "There are people you haven't met yet and things you haven't laughed at yet.",
 
-    "Future-you might look back at tonight and think: 'Thank fuck I stayed.'",
+  "Future-you might be very glad you stayed long enough to meet them.",
 
-    "You do not need to feel hopeful right now. You just need to avoid making tonight permanent.",
+  "You don't need motivation first. Sometimes you move first and the motivation arrives later.",
 
-    "Reality might be a simulation. There is zero evidence. Please remain alive anyway.",
+  "Maybe this is the terrible middle chapter. Middle chapters are allowed to suck.",
 
-    "You don't have to know where you're going. Walking in the wrong direction is still information.",
+  "None of those fictional idiots are real. You are. So let's at least give tomorrow a chance.",
 
-    "Sometimes surviving the day is the most impressive thing you did all day."
+  "Some nights the achievement is simply making it to morning."
 
 ];
 
 
-randomButton.addEventListener("click", () => {
+motivationButton.addEventListener("click", () => {
 
-    const random =
-        motivations[
-            Math.floor(
-                Math.random() *
-                motivations.length
-            )
-        ];
+  motivationBox.textContent =
+    pick(motivations);
 
 
-    randomMotivation.textContent =
-        random;
+  show(motivationBox);
 
-
-    randomMotivation.classList.add(
-        "visible"
-    );
-
-
-    randomMotivation.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+  scrollToElement(motivationBox);
 
 });
-
 
 </script>
 

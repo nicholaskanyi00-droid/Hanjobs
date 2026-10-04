@@ -1,0 +1,2546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HANJOBS — Find Your Next Job</title>
+<meta name="description" content="HANJOBS — a professional Kenyan job and gig platform.">
+
+<style>
+:root{
+  --navy:#102a43;
+  --navy-dark:#091c30;
+  --blue:#1769c2;
+  --blue-dark:#12549b;
+  --blue-soft:#edf5fd;
+  --green:#198754;
+  --green-soft:#eaf7f1;
+  --red:#c62828;
+  --yellow:#f4c542;
+  --ink:#172333;
+  --muted:#68788c;
+  --line:#dce4ec;
+  --bg:#f6f8fb;
+  --white:#fff;
+  --shadow:0 10px 30px rgba(16,42,67,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font-family:Inter,Arial,Helvetica,sans-serif;line-height:1.5}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.hidden{display:none!important}
+.container{width:min(1180px,92%);margin:auto}
+
+header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--line)}
+.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:28px;font-weight:900;color:var(--navy);letter-spacing:-1px}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;gap:27px;color:#46596f;font-size:14px;font-weight:700}
+.nav-links a:hover{color:var(--blue)}
+.nav-actions{display:flex;align-items:center;gap:9px}
+.user-pill{font-size:13px;font-weight:800;color:var(--navy);padding:10px 12px;background:var(--blue-soft);border-radius:8px}
+
+.btn{border:1px solid transparent;border-radius:8px;padding:11px 17px;font-size:14px;font-weight:800;transition:.17s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-dark)}
+.btn-secondary{background:#fff;color:var(--navy);border-color:#cbd5df}
+.btn-secondary:hover{background:var(--bg)}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-success{background:var(--green);color:#fff}
+.btn-danger{background:#fff;color:var(--red);border-color:#e4bcbc}
+.btn-block{width:100%}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+.hero{background:linear-gradient(180deg,#f3f7fc 0,#fff 100%);border-bottom:1px solid var(--line);padding:76px 0 58px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+.hero-label{display:inline-block;padding:6px 11px;border-radius:999px;background:var(--blue-soft);color:var(--blue-dark);font-size:12px;font-weight:900;margin-bottom:16px}
+.hero h1{margin:0;color:var(--navy);font-size:clamp(42px,5.8vw,72px);line-height:1.03;letter-spacing:-2.6px}
+.hero-sub{max-width:730px;margin:21px 0 27px;color:#596a7e;font-size:19px}
+.hero-search{padding:12px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.search-row{display:grid;grid-template-columns:1fr auto;gap:10px}
+.search-input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:8px;outline:none}
+.search-input:focus{border-color:#8fb9e7;box-shadow:0 0 0 3px rgba(23,105,194,.08)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.hero-card{background:var(--navy);color:#fff;padding:30px;border-radius:16px;box-shadow:var(--shadow)}
+.hero-card small{color:#a7b8cd;font-size:11px;font-weight:900;letter-spacing:1px}
+.hero-card h2{margin:9px 0 13px;font-size:30px;line-height:1.1}
+.hero-card p{margin:0 0 22px;color:#d3deea;font-size:15px}
+
+section{padding:78px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}
+.section-head h2{margin:0;color:var(--navy);font-size:31px;letter-spacing:-.7px}
+.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}
+.results{color:var(--muted);font-size:14px;font-weight:700}
+
+.featured{background:#eef5fc;border-bottom:1px solid var(--line)}
+.feature-card{background:#fff;border:1px solid #d4e0ec;border-radius:14px;padding:28px;display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center;box-shadow:var(--shadow)}
+.feature-label{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:1.2px}
+.feature-title{margin:8px 0 12px;color:var(--navy);font-size:32px;line-height:1.08}
+.feature-copy{color:#586a7f;font-size:15px;max-width:700px}
+.feature-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
+.meta-box{padding:13px;background:var(--bg);border:1px solid var(--line);border-radius:9px}
+.meta-box span{display:block;color:var(--muted);font-size:10px;font-weight:900;margin-bottom:3px}
+.meta-box strong{color:var(--navy);font-size:14px}
+.feature-side{border-left:1px solid var(--line);padding-left:30px}
+.feature-pay{color:var(--green);font-size:26px;font-weight:900;margin-bottom:17px}
+
+.jobs-section{background:#fff}
+.filters{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:10px;margin-bottom:24px}
+.filter{width:100%;padding:11px 12px;background:#fff;border:1px solid var(--line);border-radius:8px;outline:none;color:#40536a}
+.filter:focus{border-color:#8fb9e7}
+.jobs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.job-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;min-height:310px;box-shadow:0 4px 14px rgba(16,42,67,.035);transition:.17s ease}
+.job-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.job-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.company{color:var(--muted);font-size:13px;font-weight:700;margin-bottom:4px}
+.job-title{margin:0;color:var(--navy);font-size:22px;line-height:1.18}
+.badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.badge{padding:5px 8px;border-radius:999px;background:#eef5fc;border:1px solid #d8e7f7;color:var(--blue-dark);font-size:10px;font-weight:900;white-space:nowrap}
+.badge-demo{background:#fff8df;border-color:#ead9a4;color:#6c5b18}
+.job-description{margin:17px 0;color:#5a6b7f;font-size:14px}
+.job-meta{display:flex;flex-wrap:wrap;gap:9px 17px;color:#5a6c80;font-size:13px;padding-bottom:17px;border-bottom:1px solid var(--line)}
+.job-meta span{display:flex;align-items:center;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:#95a5b7}
+.job-bottom{margin-top:auto;padding-top:17px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.salary{color:var(--navy);font-size:14px;font-weight:900}
+.job-buttons{display:flex;gap:8px}
+.no-results{grid-column:1/-1;text-align:center;padding:60px;border:1px dashed #cbd5df;border-radius:12px;color:var(--muted)}
+
+.completed{background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.completed-grid{display:grid;grid-template-columns:1fr .65fr;gap:18px}
+.completed-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:25px}
+.completed-label{color:var(--green);font-size:11px;font-weight:900;letter-spacing:1px}
+.completed-title{margin:9px 0;color:var(--navy);font-size:25px;line-height:1.15;font-weight:900}
+.completed-meta{display:flex;flex-wrap:wrap;gap:8px 17px;color:var(--muted);font-size:13px}
+.stars{color:#d69c00;letter-spacing:2px}
+.completed-quote{margin-top:19px;padding-top:17px;border-top:1px solid var(--line);color:#526477;font-size:15px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.stat strong{display:block;color:var(--navy);font-size:30px}
+.stat span{color:var(--muted);font-size:11px;font-weight:900;text-transform:uppercase}
+
+.community{background:#fff}
+.profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.profile-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:0 4px 14px rgba(16,42,67,.035)}
+.profile-demo{font-size:10px;font-weight:900;letter-spacing:1px;color:#765f12;margin-bottom:13px}
+.profile-top{display:flex;align-items:center;gap:13px}
+.avatar{width:58px;height:58px;border-radius:50%;background:var(--blue-soft);color:var(--blue-dark);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;font-size:18px;font-weight:900}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.profile-name{color:var(--navy);font-size:17px;font-weight:900}
+.profile-location{color:var(--muted);font-size:13px}
+.profile-rating{margin-top:16px;font-size:14px}
+.profile-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.profile-stat{padding:10px;background:var(--bg);border:1px solid var(--line);border-radius:8px}
+.profile-stat strong{display:block;color:var(--navy);font-size:17px}
+.profile-stat span{color:var(--muted);font-size:10px;font-weight:900;text-transform:uppercase}
+.instagram-link{display:inline-block;margin-top:15px;color:var(--blue);font-size:13px;font-weight:800}
+
+.dashboard{background:#eef5fc;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dashboard-panel{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.dashboard-head{padding:21px 23px;border-bottom:1px solid var(--line)}
+.dashboard-head h3{margin:0;color:var(--navy);font-size:21px}
+.dashboard-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.dashboard-body{padding:20px}
+.demo-banner{margin-bottom:18px;padding:11px 13px;background:#fff8df;border:1px solid #ead9a4;color:#6c5b18;border-radius:8px;font-size:12px}
+.my-job{padding:16px 0;border-bottom:1px solid var(--line)}
+.my-job:last-child{border-bottom:0}
+.my-job-head{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.my-job h4{margin:0;color:var(--navy);font-size:16px}
+.my-job small{color:var(--muted)}
+.my-job-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.applicant{padding:16px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:15px}
+.applicant:last-child{border-bottom:0}
+.applicant-main{display:flex;gap:12px;align-items:center}
+.applicant-avatar{width:46px;height:46px;border-radius:50%;background:var(--blue-soft);color:var(--blue-dark);display:flex;align-items:center;justify-content:center;font-weight:900;overflow:hidden}
+.applicant-avatar img{width:100%;height:100%;object-fit:cover}
+.applicant-name{font-weight:900;color:var(--navy);font-size:14px}
+.applicant-meta{color:var(--muted);font-size:12px}
+.applicant-rating{color:#d69c00;font-size:12px}
+.applicant-buttons{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.status{display:inline-block;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;text-transform:uppercase}
+.status-applied{background:#edf5fd;color:#2b5f96}
+.status-under_review{background:#fff8df;color:#705d17}
+.status-accepted{background:var(--green-soft);color:#166844}
+.status-declined{background:var(--red-soft);color:#9f2b23}
+.status-completed{background:#e7f1ff;color:#245e9d}
+
+.locations{background:#fff}
+.location-grid{display:flex;flex-wrap:wrap;gap:9px}
+.location-tag{padding:8px 13px;background:#fff;border:1px solid var(--line);border-radius:999px;color:#43566d;font-size:13px;font-weight:700}
+
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(7,24,42,.58);display:flex;justify-content:center;align-items:center;padding:20px}
+.modal{width:min(620px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:14px;box-shadow:0 25px 70px rgba(0,0,0,.24)}
+.modal-wide{width:min(820px,100%)}
+.modal-head{padding:21px 23px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:start;gap:20px}
+.modal-head h2{margin:0;color:var(--navy);font-size:24px}
+.close{border:0;background:transparent;color:#6f8093;font-size:27px;line-height:1}
+.modal-body{padding:23px}
+.field{margin-bottom:16px}
+.field label{display:block;margin-bottom:7px;color:#33485e;font-size:13px;font-weight:800}
+.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;outline:none;background:#fff;color:var(--ink)}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#8fb9e7;box-shadow:0 0 0 3px rgba(23,105,194,.08)}
+.form-row-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.notice{margin-top:13px;padding:12px 14px;background:var(--blue-soft);border:1px solid #d7e6f6;border-radius:8px;color:#49647f;font-size:13px}
+.error{margin-top:13px;padding:12px 14px;background:var(--red-soft);border:1px solid #efc9c9;border-radius:8px;color:#9e2b23;font-size:13px}
+.success{margin-top:13px;padding:12px 14px;background:var(--green-soft);border:1px solid #c7e7d7;border-radius:8px;color:#176744;font-size:13px}
+.auth-switch{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
+.auth-switch button{border:0;background:none;color:var(--blue);font-weight:800}
+.auth-tabs{display:flex;gap:7px;margin-bottom:18px}
+.auth-tab{flex:1;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;font-weight:800;color:#55677b}
+.auth-tab.active{background:var(--blue-soft);color:var(--blue-dark);border-color:#cfe0f2}
+.summary{padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:9px;margin-bottom:18px}
+.summary-title{color:var(--navy);font-size:20px;font-weight:900}
+.summary-meta{margin-top:5px;color:var(--muted);font-size:13px}
+.requirements{margin:12px 0 0;padding-left:19px;color:#57697d;font-size:13px}
+.detail-description{color:#4e6176;font-size:15px}
+.profile-view-head{display:flex;align-items:center;gap:15px;margin-bottom:19px}
+.profile-bio{color:#53667b;font-size:14px;margin-bottom:18px}
+.rating-list{margin-top:20px;border-top:1px solid var(--line)}
+.rating-item{padding:15px 0;border-bottom:1px solid var(--line)}
+.rating-item:last-child{border-bottom:0}
+.rating-author{font-weight:800;color:var(--navy);font-size:13px}
+.rating-text{margin-top:5px;color:#56687d;font-size:13px}
+.empty-dashboard{padding:30px 10px;text-align:center;color:var(--muted);font-size:13px}
+
+footer{background:var(--navy-dark);color:#d7e0eb;padding:40px 0}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.footer-logo{font-size:21px;font-weight:900;color:#fff}
+.footer-logo span{color:#78b0e5}
+.footer-text{color:#90a3b8;font-size:13px}
+
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .feature-card{grid-template-columns:1fr}
+  .feature-side{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:25px}
+  .filters{grid-template-columns:1fr 1fr}
+  .completed-grid{grid-template-columns:1fr}
+  .profiles{grid-template-columns:1fr 1fr}
+  .dashboard-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:720px){
+  .nav{padding:10px 0;min-height:70px;flex-wrap:wrap}
+  .nav-links{display:none}
+  .nav-actions{margin-left:auto}
+  .hero{padding:50px 0 42px}
+  .search-row{grid-template-columns:1fr}
+  .filters{grid-template-columns:1fr}
+  .jobs{grid-template-columns:1fr}
+  .profiles{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .form-row-two{grid-template-columns:1fr}
+  .job-bottom{flex-direction:column;align-items:flex-start}
+  .job-buttons{width:100%}
+  .job-buttons .btn{flex:1}
+  .applicant{flex-direction:column;align-items:flex-start}
+  .applicant-buttons{justify-content:flex-start;width:100%}
+  .footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">HAN<span>JOBS</span></a>
+
+    <nav class="nav-links">
+      <a href="#jobs">Find Jobs</a>
+      <a href="#community">Bro Profiles</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#locations">Locations</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div id="userPill" class="user-pill hidden"></div>
+      <button id="authButton" class="btn btn-secondary">Sign In</button>
+      <button id="postHeaderButton" class="btn btn-primary">Give a Bro a Job</button>
+    </div>
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="hero-label">KENYA'S JOB & GIG PLATFORM</div>
+
+      <h1>
+        ECONOMY GOT YOU DOWN?<br>
+        STRESSED ABOUT THE FUTURE?<br>
+        SOUNDS LIKE YOU NEED A HANJOB.
+      </h1>
+
+      <p class="hero-sub">
+        Find work, post an opening, build your Bro profile and get things done across Kenya.
+      </p>
+
+      <div class="hero-search">
+        <div class="search-row">
+          <input id="heroSearch" class="search-input" type="search" placeholder="Search jobs, roles or keywords">
+          <button id="heroSearchButton" class="btn btn-primary">Search Jobs</button>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#jobs" class="btn btn-primary">Apply for a Bro Job</a>
+        <button id="heroPostButton" class="btn btn-secondary">Give a Bro a Job</button>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <small>FOR BROs & EMPLOYERS</small>
+      <h2>Need somebody to get it done?</h2>
+      <p>Post an opening, receive applications, build a reputation and manage work from one place.</p>
+      <button id="heroProfileButton" class="btn btn-primary">Create Your Profile</button>
+    </aside>
+
+  </div>
+</section>
+
+
+<section class="featured">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2>Bro of the Day</h2>
+        <p>One featured opening selected for today.</p>
+      </div>
+    </div>
+
+    <div id="featuredJob" class="feature-card"></div>
+
+  </div>
+</section>
+
+
+<section id="jobs" class="jobs-section">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2>Available Jobs</h2>
+        <p>Search current HANJOBS openings across Kenya.</p>
+      </div>
+      <div id="resultsCount" class="results"></div>
+    </div>
+
+    <div class="filters">
+      <input id="jobSearch" class="filter" type="search" placeholder="Search jobs">
+
+      <select id="locationFilter" class="filter">
+        <option value="all">All locations</option>
+      </select>
+
+      <select id="typeFilter" class="filter">
+        <option value="all">All job types</option>
+        <option>Full-time</option>
+        <option>Part-time</option>
+        <option>Contract</option>
+        <option>Casual</option>
+      </select>
+
+      <select id="payFilter" class="filter">
+        <option value="all">All pay</option>
+        <option value="with_pay">Pay specified</option>
+        <option value="without_pay">Pay not specified</option>
+      </select>
+
+      <select id="sortFilter" class="filter">
+        <option value="newest">Newest</option>
+        <option value="az">Title A–Z</option>
+        <option value="za">Title Z–A</option>
+      </select>
+    </div>
+
+    <div id="jobsGrid" class="jobs"></div>
+
+  </div>
+</section>
+
+
+<section class="completed">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2>Bro Job Completed</h2>
+        <p>Community activity from completed work.</p>
+      </div>
+    </div>
+
+    <div class="completed-grid">
+      <div id="completedHighlight" class="completed-card"></div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong id="completedTotal">—</strong>
+          <span>Bro Jobs Completed</span>
+        </div>
+        <div class="stat">
+          <strong id="averageCommunityRating">—</strong>
+          <span>Average Bro Rating</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="community" class="community">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2>Bro Profiles</h2>
+        <p>Professional profiles built from real HANJOBS activity.</p>
+      </div>
+      <button id="profileButton" class="btn btn-primary">Create / Edit Profile</button>
+    </div>
+
+    <div id="profilesGrid" class="profiles"></div>
+
+  </div>
+</section>
+
+
+<section id="dashboard" class="dashboard">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <h2>HANJOBS Dashboard</h2>
+        <p>Manage your jobs and applications.</p>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+
+      <div class="dashboard-panel">
+        <div class="dashboard-head">
+          <h3>My Jobs</h3>
+          <p>Jobs you have posted and their applicants.</p>
+        </div>
+        <div id="myJobs" class="dashboard-body"></div>
+      </div>
+
+      <div class="dashboard-panel">
+        <div class="dashboard-head">
+          <h3>My Applications</h3>
+          <p>Track applications and completed Bro Jobs.</p>
+        </div>
+        <div id="myApplications" class="dashboard-body"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="locations" class="locations">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>HANJOBS Across Kenya</h2>
+        <p>Town and neighbourhood data used by the platform.</p>
+      </div>
+    </div>
+
+    <div id="locationTags" class="location-grid"></div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container footer">
+    <div class="footer-logo">HAN<span>JOBS</span></div>
+    <div class="footer-text">Professional job platform. Questionable job opportunities.</div>
+  </div>
+</footer>
+
+
+<!-- AUTH -->
+<div id="authModal" class="modal-bg hidden">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="authTitle">Sign In</h2>
+      <button class="close" data-close="authModal">&times;</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="auth-tabs">
+        <button id="loginTab" class="auth-tab active">Sign In</button>
+        <button id="signupTab" class="auth-tab">Create Account</button>
+      </div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label>Email</label>
+          <input id="loginEmail" type="email" required>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input id="loginPassword" type="password" required>
+        </div>
+        <button id="loginSubmit" type="submit" class="btn btn-primary btn-block">Sign In</button>
+        <div style="text-align:center;margin-top:13px;">
+          <button id="forgotButton" type="button" class="btn btn-secondary">Forgot password?</button>
+        </div>
+      </form>
+
+      <form id="signupForm" class="hidden">
+        <div class="field">
+          <label>Full Name</label>
+          <input id="signupName" required>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input id="signupEmail" type="email" required>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input id="signupPassword" type="password" minlength="6" required>
+        </div>
+        <div class="field">
+          <label>Account Type</label>
+          <select id="signupType">
+            <option value="both">I want to find jobs and post jobs</option>
+            <option value="bro">I'm mainly looking for jobs</option>
+            <option value="employer">I'm mainly hiring people</option>
+          </select>
+        </div>
+        <button id="signupSubmit" type="submit" class="btn btn-primary btn-block">Create Account</button>
+      </form>
+
+      <div id="authMessage"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PASSWORD RESET -->
+<div id="resetModal" class="modal-bg hidden">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Reset Password</h2>
+      <button class="close" data-close="resetModal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="requestResetForm">
+        <div class="field">
+          <label>Email</label>
+          <input id="resetEmail" type="email" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send Reset Link</button>
+      </form>
+
+      <form id="newPasswordForm" class="hidden">
+        <div class="field">
+          <label>New Password</label>
+          <input id="newPassword" type="password" minlength="6" required>
+        </div>
+        <div class="field">
+          <label>Confirm Password</label>
+          <input id="newPasswordConfirm" type="password" minlength="6" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update Password</button>
+      </form>
+
+      <div id="resetMessage"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- POST / EDIT JOB -->
+<div id="jobModal" class="modal-bg hidden">
+  <div class="modal modal-wide">
+    <div class="modal-head">
+      <h2 id="jobModalTitle">Give a Bro a Job</h2>
+      <button class="close" data-close="jobModal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="jobForm">
+
+        <div class="field">
+          <label>Job Title</label>
+          <input id="jobTitle" required>
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <textarea id="jobDescription" required></textarea>
+        </div>
+
+        <div class="form-row-two">
+          <div class="field">
+            <label>Location</label>
+            <select id="jobLocation" required></select>
+          </div>
+
+          <div class="field">
+            <label>Job Type</label>
+            <select id="jobType">
+              <option>Full-time</option>
+              <option>Part-time</option>
+              <option>Contract</option>
+              <option>Casual</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-two">
+          <div class="field">
+            <label>Pay</label>
+            <input id="jobPay" placeholder="e.g. KSh 1,000 per day">
+          </div>
+
+          <div class="field">
+            <label>Date / Time</label>
+            <input id="jobDateTime" type="datetime-local">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Requirements — Optional</label>
+          <textarea id="jobRequirements" placeholder="One requirement per line"></textarea>
+        </div>
+
+        <button id="jobSubmit" type="submit" class="btn btn-primary btn-block">Post Opening</button>
+        <div id="jobMessage"></div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- JOB DETAIL / APPLICATION -->
+<div id="detailModal" class="modal-bg hidden">
+  <div class="modal modal-wide">
+    <div class="modal-head">
+      <h2>Job Details</h2>
+      <button class="close" data-close="detailModal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div id="jobDetailContent"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PROFILE EDIT -->
+<div id="profileModal" class="modal-bg hidden">
+  <div class="modal modal-wide">
+    <div class="modal-head">
+      <h2>Your HANJOBS Profile</h2>
+      <button class="close" data-close="profileModal">&times;</button>
+    </div>
+    <div class="modal-body">
+
+      <form id="profileForm">
+
+        <div class="form-row-two">
+          <div class="field">
+            <label>Display Name</label>
+            <input id="profileName" required>
+          </div>
+
+          <div class="field">
+            <label>Username — Optional</label>
+            <input id="profileUsername" placeholder="@username">
+          </div>
+        </div>
+
+        <div class="form-row-two">
+          <div class="field">
+            <label>Location</label>
+            <select id="profileLocation"></select>
+          </div>
+
+          <div class="field">
+            <label>Specific Area</label>
+            <input id="profileArea" placeholder="Use only a general area, not a home address">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Profile Photo</label>
+          <input id="profilePhoto" type="file" accept="image/jpeg,image/png,image/webp">
+        </div>
+
+        <div class="field">
+          <label>Instagram Username — Optional</label>
+          <input id="profileInstagram" placeholder="@username">
+        </div>
+
+        <div class="field">
+          <label>About Me — Optional</label>
+          <textarea id="profileBio" placeholder="A short professional description."></textarea>
+        </div>
+
+        <button id="profileSubmit" type="submit" class="btn btn-primary btn-block">Save Profile</button>
+        <div id="profileMessage"></div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- PUBLIC PROFILE -->
+<div id="publicProfileModal" class="modal-bg hidden">
+  <div class="modal modal-wide">
+    <div class="modal-head">
+      <h2>Bro Profile</h2>
+      <button class="close" data-close="publicProfileModal">&times;</button>
+    </div>
+    <div id="publicProfileBody" class="modal-body"></div>
+  </div>
+</div>
+
+
+<!-- RATING -->
+<div id="ratingModal" class="modal-bg hidden">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Rate Completed Job</h2>
+      <button class="close" data-close="ratingModal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div id="ratingSummary" class="summary"></div>
+
+      <form id="ratingForm">
+        <div class="field">
+          <label>Rating</label>
+          <select id="ratingValue" required>
+            <option value="">Select</option>
+            <option value="5">★★★★★ — 5</option>
+            <option value="4">★★★★☆ — 4</option>
+            <option value="3">★★★☆☆ — 3</option>
+            <option value="2">★★☆☆☆ — 2</option>
+            <option value="1">★☆☆☆☆ — 1</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Review — Optional</label>
+          <textarea id="ratingReview" placeholder="How did the Bro Job go?"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Submit Rating</button>
+        <div id="ratingMessage"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+/* =====================================================
+   SUPABASE CONFIG
+   ONLY THE PUBLIC/PUBLISHABLE KEY BELONGS HERE.
+===================================================== */
+
+const SUPABASE_URL = "https://igswdaioxynnnrleoidb.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Snx1rI2iITsjgVZCrVcf6Q_E_K1rWcU";
+
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY,
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+      flowType: "pkce"
+    }
+  }
+);
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let currentSession = null;
+let currentProfile = null;
+let locations = [];
+let jobs = [];
+let profiles = [];
+let featuredJob = null;
+let editingJobId = null;
+let selectedApplicationForRating = null;
+
+
+/* =====================================================
+   ELEMENT HELPERS
+===================================================== */
+
+const $ = id => document.getElementById(id);
+
+function show(id){
+  $(id).classList.remove("hidden");
+}
+
+function hide(id){
+  $(id).classList.add("hidden");
+}
+
+function setMessage(id, type, text){
+  $(id).innerHTML = text
+    ? `<div class="${type}">${escapeHTML(text)}</div>`
+    : "";
+}
+
+function escapeHTML(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function initials(name){
+  return String(name || "HANJOBS User")
+    .split(" ")
+    .filter(Boolean)
+    .slice(0,2)
+    .map(x => x[0].toUpperCase())
+    .join("");
+}
+
+function locationLabel(location){
+  if(!location) return "Location not specified";
+  return [location.town, location.area].filter(Boolean).join(" — ");
+}
+
+function moneyText(job){
+  return job.pay || "Pay not specified";
+}
+
+function scrollTo(id){
+  const el = $(id);
+  if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function openModal(id){ show(id); }
+function closeModal(id){ hide(id); }
+
+
+/* =====================================================
+   AUTH UI
+===================================================== */
+
+function setAuthMode(mode){
+  const login = mode === "login";
+
+  $("authTitle").textContent = login ? "Sign In" : "Create Account";
+  $("loginForm").classList.toggle("hidden", !login);
+  $("signupForm").classList.toggle("hidden", login);
+  $("loginTab").classList.toggle("active", login);
+  $("signupTab").classList.toggle("active", !login);
+  $("authMessage").innerHTML = "";
+}
+
+$("authButton").addEventListener("click", async () => {
+  if(currentSession){
+    await supabase.auth.signOut();
+  }else{
+    setAuthMode("login");
+    openModal("authModal");
+  }
+});
+
+$("loginTab").addEventListener("click", () => setAuthMode("login"));
+$("signupTab").addEventListener("click", () => setAuthMode("signup"));
+
+
+/* =====================================================
+   SIGN UP
+===================================================== */
+
+$("signupForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const button = $("signupSubmit");
+  button.disabled = true;
+  button.textContent = "Creating account...";
+  $("authMessage").innerHTML = "";
+
+  try{
+    const { data, error } = await supabase.auth.signUp({
+      email: $("signupEmail").value.trim(),
+      password: $("signupPassword").value,
+      options: {
+        data: {
+          full_name: $("signupName").value.trim(),
+          account_type: $("signupType").value
+        }
+      }
+    });
+
+    if(error) throw error;
+
+    if(data.session){
+      setMessage("authMessage","success","Account created. You're signed in.");
+    }else{
+      setMessage(
+        "authMessage",
+        "success",
+        "Account created. Check your email to confirm the account, then sign in."
+      );
+    }
+
+  }catch(error){
+    setMessage("authMessage","error",error.message || "Could not create account.");
+  }finally{
+    button.disabled = false;
+    button.textContent = "Create Account";
+  }
+});
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const button = $("loginSubmit");
+  button.disabled = true;
+  button.textContent = "Signing in...";
+  $("authMessage").innerHTML = "";
+
+  try{
+    const { error } = await supabase.auth.signInWithPassword({
+      email: $("loginEmail").value.trim(),
+      password: $("loginPassword").value
+    });
+
+    if(error) throw error;
+
+    closeModal("authModal");
+
+  }catch(error){
+    setMessage("authMessage","error",error.message || "Could not sign in.");
+  }finally{
+    button.disabled = false;
+    button.textContent = "Sign In";
+  }
+});
+
+
+/* =====================================================
+   PASSWORD RESET
+===================================================== */
+
+$("forgotButton").addEventListener("click", () => {
+  closeModal("authModal");
+  $("requestResetForm").classList.remove("hidden");
+  $("newPasswordForm").classList.add("hidden");
+  $("resetMessage").innerHTML = "";
+  openModal("resetModal");
+});
+
+$("requestResetForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const email = $("resetEmail").value.trim();
+
+  try{
+    const redirectTo = window.location.origin + window.location.pathname;
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email,{
+      redirectTo
+    });
+
+    if(error) throw error;
+
+    setMessage(
+      "resetMessage",
+      "success",
+      "If an account exists for that email, a reset link has been sent."
+    );
+
+  }catch(error){
+    setMessage("resetMessage","error",error.message || "Could not request password reset.");
+  }
+});
+
+$("newPasswordForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const password = $("newPassword").value;
+  const confirm = $("newPasswordConfirm").value;
+
+  if(password !== confirm){
+    setMessage("resetMessage","error","The passwords do not match.");
+    return;
+  }
+
+  try{
+    const { error } = await supabase.auth.updateUser({password});
+    if(error) throw error;
+
+    setMessage("resetMessage","success","Password updated successfully.");
+
+    setTimeout(() => closeModal("resetModal"),900);
+
+  }catch(error){
+    setMessage("resetMessage","error",error.message || "Could not update password.");
+  }
+});
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+supabase.auth.onAuthStateChange(async (event, session) => {
+  currentSession = session;
+  await refreshCurrentUser();
+
+  if(event === "PASSWORD_RECOVERY"){
+    $("requestResetForm").classList.add("hidden");
+    $("newPasswordForm").classList.remove("hidden");
+    $("resetMessage").innerHTML = "";
+    openModal("resetModal");
+  }
+});
+
+async function refreshCurrentUser(){
+  if(!currentSession){
+    currentProfile = null;
+    updateAuthUI();
+    renderDashboardSignedOut();
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .select(`
+      id,
+      user_id,
+      is_demo,
+      account_type,
+      display_name,
+      username,
+      avatar_url,
+      instagram_username,
+      bio,
+      jobs_completed,
+      average_rating,
+      created_at,
+      location_id,
+      locations(town,county,area)
+    `)
+    .eq("user_id",currentSession.user.id)
+    .maybeSingle();
+
+  if(error){
+    console.error(error);
+    currentProfile = null;
+  }else{
+    currentProfile = data;
+  }
+
+  updateAuthUI();
+  renderDashboardSignedOut();
+}
+
+function updateAuthUI(){
+  if(currentSession && currentProfile){
+    $("authButton").textContent = "Log Out";
+    $("userPill").classList.remove("hidden");
+    $("userPill").textContent = currentProfile.display_name;
+  }else if(currentSession){
+    $("authButton").textContent = "Log Out";
+    $("userPill").classList.remove("hidden");
+    $("userPill").textContent = currentSession.user.email;
+  }else{
+    $("authButton").textContent = "Sign In";
+    $("userPill").classList.add("hidden");
+  }
+}
+
+
+/* =====================================================
+   DATA LOADING
+===================================================== */
+
+async function loadAll(){
+  await loadLocations();
+  await Promise.all([
+    loadJobs(),
+    loadProfiles(),
+    loadFeaturedJob(),
+    loadCompletedHighlights()
+  ]);
+  await refreshCurrentUser();
+}
+
+async function loadLocations(){
+  const { data, error } = await supabase
+    .from("locations")
+    .select("id,county,town,area")
+    .order("town")
+    .order("area");
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  locations = data || [];
+  renderLocationControls();
+}
+
+async function loadJobs(){
+  const { data, error } = await supabase
+    .from("jobs")
+    .select(`
+      id,
+      owner_profile_id,
+      is_demo,
+      title,
+      description,
+      job_type,
+      pay,
+      start_at,
+      requirements,
+      status,
+      created_at,
+      updated_at,
+      locations(id,county,town,area),
+      profiles!jobs_owner_profile_id_fkey(
+        id,
+        display_name,
+        username,
+        avatar_url,
+        is_demo,
+        jobs_completed,
+        average_rating
+      )
+    `)
+    .eq("status","active")
+    .order("created_at",{ascending:false});
+
+  if(error){
+    console.error(error);
+    $("jobsGrid").innerHTML = `<div class="no-results">Could not load jobs. ${escapeHTML(error.message)}</div>`;
+    return;
+  }
+
+  jobs = data || [];
+  renderJobs();
+}
+
+async function loadProfiles(){
+  const { data, error } = await supabase
+    .from("profiles")
+    .select(`
+      id,
+      user_id,
+      is_demo,
+      display_name,
+      username,
+      avatar_url,
+      instagram_username,
+      bio,
+      jobs_completed,
+      average_rating,
+      created_at,
+      locations(id,county,town,area)
+    `)
+    .order("created_at",{ascending:false})
+    .limit(12);
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  profiles = data || [];
+  renderProfiles();
+}
+
+async function loadFeaturedJob(){
+  const today = new Date().toISOString().slice(0,10);
+
+  const { data, error } = await supabase
+    .from("featured_jobs")
+    .select(`
+      featured_date,
+      jobs!featured_jobs_job_id_fkey(
+        id,
+        is_demo,
+        title,
+        description,
+        pay,
+        job_type,
+        start_at,
+        requirements,
+        locations(id,county,town,area),
+        profiles!jobs_owner_profile_id_fkey(display_name)
+      )
+    `)
+    .eq("featured_date",today)
+    .maybeSingle();
+
+  if(error){
+    console.error(error);
+  }
+
+  if(data && data.jobs){
+    featuredJob = data.jobs;
+  }else{
+    featuredJob = jobs.find(job => job.is_demo) || jobs[0] || null;
+  }
+
+  renderFeaturedJob();
+}
+
+async function loadCompletedHighlights(){
+  const { data, error } = await supabase
+    .from("completed_job_highlights")
+    .select("*")
+    .order("completed_at",{ascending:false})
+    .limit(12);
+
+  if(error){
+    console.error(error);
+    return;
+  }
+
+  renderCompletedHighlights(data || []);
+}
+
+
+/* =====================================================
+   LOCATION UI
+===================================================== */
+
+function renderLocationControls(){
+  const currentFilter = $("locationFilter").value;
+  const currentJobLocation = $("jobLocation").value;
+  const currentProfileLocation = $("profileLocation").value;
+
+  $("locationFilter").innerHTML =
+    `<option value="all">All locations</option>` +
+    locations.map(location => `
+      <option value="${escapeHTML(location.id)}">
+        ${escapeHTML(locationLabel(location))}
+      </option>
+    `).join("");
+
+  $("jobLocation").innerHTML =
+    `<option value="">Select location</option>` +
+    locations.map(location => `
+      <option value="${escapeHTML(location.id)}">
+        ${escapeHTML(locationLabel(location))}
+      </option>
+    `).join("");
+
+  $("profileLocation").innerHTML =
+    `<option value="">Select location</option>` +
+    locations.map(location => `
+      <option value="${escapeHTML(location.id)}">
+        ${escapeHTML(locationLabel(location))}
+      </option>
+    `).join("");
+
+  if(locations.some(x => x.id === currentFilter)) $("locationFilter").value=currentFilter;
+  if(locations.some(x => x.id === currentJobLocation)) $("jobLocation").value=currentJobLocation;
+  if(locations.some(x => x.id === currentProfileLocation)) $("profileLocation").value=currentProfileLocation;
+
+  $("locationTags").innerHTML = locations
+    .map(location => `<span class="location-tag">${escapeHTML(locationLabel(location))}</span>`)
+    .join("");
+}
+
+
+/* =====================================================
+   JOB SEARCH + RENDER
+===================================================== */
+
+function filteredJobs(){
+  const query = $("jobSearch").value.trim().toLowerCase();
+  const location = $("locationFilter").value;
+  const type = $("typeFilter").value;
+  const pay = $("payFilter").value;
+  const sort = $("sortFilter").value;
+
+  let list = jobs.filter(job => {
+    const searchable = [
+      job.title,
+      job.description,
+      job.profiles?.display_name,
+      job.locations?.town,
+      job.locations?.area,
+      ...(job.requirements || [])
+    ].join(" ").toLowerCase();
+
+    if(query && !searchable.includes(query)) return false;
+    if(location !== "all" && job.locations?.id !== location) return false;
+    if(type !== "all" && job.job_type !== type) return false;
+
+    if(pay === "with_pay" && !job.pay) return false;
+    if(pay === "without_pay" && job.pay) return false;
+
+    return true;
+  });
+
+  if(sort === "az"){
+    list.sort((a,b)=>a.title.localeCompare(b.title));
+  }
+
+  if(sort === "za"){
+    list.sort((a,b)=>b.title.localeCompare(a.title));
+  }
+
+  if(sort === "newest"){
+    list.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+  }
+
+  return list;
+}
+
+function renderJobs(){
+  const list = filteredJobs();
+
+  $("resultsCount").textContent =
+    `${list.length} job${list.length===1?"":"s"} available`;
+
+  if(!list.length){
+    $("jobsGrid").innerHTML = `
+      <div class="no-results">
+        <strong>No jobs found.</strong>
+        <div style="margin-top:6px;">Try another search or location.</div>
+      </div>
+    `;
+    return;
+  }
+
+  $("jobsGrid").innerHTML = list.map(job => `
+    <article class="job-card">
+
+      <div class="job-head">
+        <div>
+          <div class="company">
+            ${escapeHTML(job.profiles?.display_name || "HANJOBS Employer")}
+          </div>
+          <h3 class="job-title">${escapeHTML(job.title)}</h3>
+        </div>
+
+        <div class="badges">
+          ${job.is_demo ? `<span class="badge badge-demo">DEMO JOB</span>` : ""}
+          <span class="badge">${escapeHTML(job.job_type)}</span>
+        </div>
+      </div>
+
+      <p class="job-description">
+        ${escapeHTML(job.description)}
+      </p>
+
+      <div class="job-meta">
+        <span><i class="dot"></i>${escapeHTML(locationLabel(job.locations))}</span>
+        <span><i class="dot"></i>${escapeHTML(job.job_type)}</span>
+        <span><i class="dot"></i>${escapeHTML(job.pay || "Pay not specified")}</span>
+      </div>
+
+      <div class="job-bottom">
+        <div class="salary">
+          ${escapeHTML(moneyText(job))}
+        </div>
+
+        <div class="job-buttons">
+          <button class="btn btn-secondary" onclick="viewJob('${job.id}')">
+            View
+          </button>
+
+          <button
+            class="btn btn-primary"
+            ${job.is_demo ? "disabled" : ""}
+            onclick="applyJob('${job.id}')"
+          >
+            ${job.is_demo ? "Demo Listing" : "Apply"}
+          </button>
+        </div>
+      </div>
+
+    </article>
+  `).join("");
+}
+
+["jobSearch","locationFilter","typeFilter","payFilter","sortFilter"]
+  .forEach(id => $(id).addEventListener("input",renderJobs));
+
+["locationFilter","typeFilter","payFilter","sortFilter"]
+  .forEach(id => $(id).addEventListener("change",renderJobs));
+
+
+/* =====================================================
+   FEATURED JOB
+===================================================== */
+
+function renderFeaturedJob(){
+  if(!featuredJob){
+    $("featuredJob").innerHTML = `<div class="no-results">No featured job available yet.</div>`;
+    return;
+  }
+
+  $("featuredJob").innerHTML = `
+    <div>
+      <div class="feature-label">BRO OF THE DAY ${featuredJob.is_demo ? "· DEMO LISTING" : ""}</div>
+      <div class="feature-title">${escapeHTML(featuredJob.title)}</div>
+      <div class="feature-copy">${escapeHTML(featuredJob.description)}</div>
+
+      <div class="feature-meta">
+        <div class="meta-box">
+          <span>LOCATION</span>
+          <strong>${escapeHTML(locationLabel(featuredJob.locations))}</strong>
+        </div>
+
+        <div class="meta-box">
+          <span>JOB TYPE</span>
+          <strong>${escapeHTML(featuredJob.job_type)}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-side">
+      <div class="feature-pay">
+        ${escapeHTML(moneyText(featuredJob))}
+      </div>
+
+      <button
+        class="btn btn-primary btn-block"
+        ${featuredJob.is_demo ? "disabled" : ""}
+        onclick="applyJob('${featuredJob.id}')"
+      >
+        ${featuredJob.is_demo ? "Demo Listing" : "Apply for This Bro Job"}
+      </button>
+    </div>
+  `;
+}
+
+
+/* =====================================================
+   COMPLETED HIGHLIGHTS
+===================================================== */
+
+function renderCompletedHighlights(data){
+  const highlight = data[0];
+
+  if(!highlight){
+    $("completedHighlight").innerHTML = `
+      <div class="completed-label">COMMUNITY ACTIVITY</div>
+      <div class="completed-title">No completed jobs yet.</div>
+      <div class="completed-quote">Once real HANJOBS jobs are completed, they can appear here.</div>
+    `;
+    $("completedTotal").textContent = "0";
+    $("averageCommunityRating").textContent = "—";
+    return;
+  }
+
+  $("completedHighlight").innerHTML = `
+    <div class="completed-label">
+      ${highlight.is_demo ? "DEMO COMMUNITY ACTIVITY" : "REAL COMMUNITY ACTIVITY"}
+    </div>
+
+    <div class="completed-title">
+      ${escapeHTML(highlight.job_title)}
+    </div>
+
+    <div class="completed-meta">
+      <span>Completed by: ${escapeHTML(highlight.completed_by_name)}</span>
+      <span>${escapeHTML(highlight.location_label || "Kenya")}</span>
+      <span class="stars">
+        ${highlight.rating ? "★★★★★" : "Not rated yet"}
+      </span>
+    </div>
+
+    <div class="completed-quote">
+      ${escapeHTML(highlight.review || "Completed successfully. No review yet.")}
+    </div>
+
+    <button
+      class="btn btn-secondary"
+      style="margin-top:18px"
+      onclick="openProfileByName('${escapeHTML(highlight.completed_by_name)}')"
+    >
+      View Bro Profiles
+    </button>
+  `;
+
+  const realRated = data.filter(x => !x.is_demo && x.rating != null);
+  const allCompletedReal = data.filter(x => !x.is_demo).length;
+
+  $("completedTotal").textContent = allCompletedReal || (data.filter(x => x.is_demo).length ? "Demo" : "0");
+
+  if(realRated.length){
+    const avg = realRated.reduce((sum,item)=>sum+Number(item.rating),0)/realRated.length;
+    $("averageCommunityRating").textContent = avg.toFixed(1) + "/5";
+  }else{
+    $("averageCommunityRating").textContent = highlight.rating ? Number(highlight.rating).toFixed(1)+"/5" : "—";
+  }
+}
+
+
+/* =====================================================
+   PROFILES
+===================================================== */
+
+function profileCard(profile){
+  return `
+    <article class="profile-card">
+
+      ${profile.is_demo ? `<div class="profile-demo">DEMO PROFILE</div>` : ""}
+
+      <div class="profile-top">
+
+        <div class="avatar">
+          ${profile.avatar_url
+            ? `<img src="${escapeHTML(profile.avatar_url)}" alt="Profile photo">`
+            : escapeHTML(initials(profile.display_name))}
+        </div>
+
+        <div>
+          <div class="profile-name">${escapeHTML(profile.display_name)}</div>
+          <div class="profile-location">
+            ${escapeHTML(locationLabel(profile.locations))}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="profile-rating">
+        ${Number(profile.average_rating) > 0
+          ? `<span class="stars">★★★★★</span>
+             <span style="color:#68788c;font-size:12px;letter-spacing:0;margin-left:5px;">
+               ${Number(profile.average_rating).toFixed(1)}
+             </span>`
+          : `<span style="color:#68788c;font-weight:800;">NEW BRO</span>`}
+      </div>
+
+      <div class="profile-stats">
+
+        <div class="profile-stat">
+          <strong>${escapeHTML(profile.jobs_completed)}</strong>
+          <span>Jobs Completed</span>
+        </div>
+
+        <div class="profile-stat">
+          <strong>${profile.average_rating > 0 ? Number(profile.average_rating).toFixed(1) : "—"}</strong>
+          <span>Rating</span>
+        </div>
+
+      </div>
+
+      ${profile.instagram_username
+        ? `<a
+             class="instagram-link"
+             href="https://instagram.com/${escapeHTML(profile.instagram_username.replace(/^@/,""))}"
+             target="_blank"
+             rel="noopener noreferrer"
+           >
+             View Instagram
+           </a>`
+        : ""}
+
+      <button
+        class="btn btn-secondary btn-block"
+        style="margin-top:15px"
+        onclick="viewProfile('${profile.id}')"
+      >
+        View Profile
+      </button>
+
+    </article>
+  `;
+}
+
+function renderProfiles(){
+  if(!profiles.length){
+    $("profilesGrid").innerHTML = `<div class="no-results">No profiles yet.</div>`;
+    return;
+  }
+
+  $("profilesGrid").innerHTML = profiles
+    .map(profileCard)
+    .join("");
+}
+
+async function viewProfile(profileId){
+  const { data, error } = await supabase
+    .from("profiles")
+    .select(`
+      id,
+      user_id,
+      is_demo,
+      display_name,
+      username,
+      avatar_url,
+      instagram_username,
+      bio,
+      jobs_completed,
+      average_rating,
+      created_at,
+      locations(id,county,town,area)
+    `)
+    .eq("id",profileId)
+    .maybeSingle();
+
+  if(error || !data){
+    alert(error?.message || "Profile not found.");
+    return;
+  }
+
+  const { data: ratings } = await supabase
+    .from("ratings")
+    .select(`
+      rating,
+      review,
+      created_at,
+      profiles!ratings_reviewer_profile_id_fkey(display_name)
+    `)
+    .eq("reviewed_profile_id",profileId)
+    .order("created_at",{ascending:false})
+    .limit(10);
+
+  $("publicProfileBody").innerHTML = `
+    ${data.is_demo ? `<div class="demo-banner">DEMO PROFILE — example data, not a real HANJOBS account.</div>` : ""}
+
+    <div class="profile-view-head">
+
+      <div class="avatar" style="width:72px;height:72px;font-size:22px;">
+        ${data.avatar_url
+          ? `<img src="${escapeHTML(data.avatar_url)}" alt="Profile photo">`
+          : escapeHTML(initials(data.display_name))}
+      </div>
+
+      <div>
+        <div style="font-size:25px;font-weight:900;color:#102a43;">
+          ${escapeHTML(data.display_name)}
+        </div>
+        <div style="color:#68788c;font-size:14px;">
+          ${escapeHTML(locationLabel(data.locations))}
+        </div>
+      </div>
+
+    </div>
+
+    ${data.bio
+      ? `<div class="profile-bio">${escapeHTML(data.bio)}</div>`
+      : ""}
+
+    <div class="profile-stats">
+      <div class="profile-stat">
+        <strong>${escapeHTML(data.jobs_completed)}</strong>
+        <span>Bro Jobs Completed</span>
+      </div>
+      <div class="profile-stat">
+        <strong>${data.average_rating > 0 ? Number(data.average_rating).toFixed(1) : "—"}</strong>
+        <span>Average Rating</span>
+      </div>
+    </div>
+
+    ${data.username
+      ? `<div style="margin-top:15px;color:#68788c;font-size:13px;">@${escapeHTML(data.username.replace(/^@/,""))}</div>`
+      : ""}
+
+    ${data.instagram_username
+      ? `<a
+          class="btn btn-secondary"
+          style="margin-top:16px;display:inline-block"
+          href="https://instagram.com/${escapeHTML(data.instagram_username.replace(/^@/,""))}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Instagram
+        </a>`
+      : ""}
+
+    <div class="rating-list">
+      <div style="padding:15px 0;font-weight:900;color:#102a43;">Employer / Bro Feedback</div>
+      ${(ratings || []).length
+        ? ratings.map(r => `
+          <div class="rating-item">
+            <div class="rating-author">
+              ${escapeHTML(r.profiles?.display_name || "HANJOBS User")}
+              <span class="stars" style="margin-left:6px;">${"★".repeat(Number(r.rating))}</span>
+            </div>
+            ${r.review ? `<div class="rating-text">${escapeHTML(r.review)}</div>` : ""}
+          </div>
+        `).join("")
+        : `<div style="padding:15px 0;color:#68788c;font-size:13px;">No public ratings yet.</div>`}
+    </div>
+  `;
+
+  openModal("publicProfileModal");
+}
+
+function openProfileByName(name){
+  const profile = profiles.find(p => p.display_name === name || p.display_name === name.replace(". M.",""));
+  if(profile) viewProfile(profile.id);
+  else alert("This demo completed-job profile is illustrative only.");
+}
+
+
+/* =====================================================
+   PROFILE EDIT
+===================================================== */
+
+$("profileButton").addEventListener("click", async () => {
+  if(!currentSession){
+    setAuthMode("signup");
+    openModal("authModal");
+    return;
+  }
+
+  if(!currentProfile){
+    await refreshCurrentUser();
+  }
+
+  if(!currentProfile){
+    alert("Your profile has not loaded yet. Please sign out and sign in again.");
+    return;
+  }
+
+  $("profileName").value = currentProfile.display_name || "";
+  $("profileUsername").value = currentProfile.username ? "@" + currentProfile.username.replace(/^@/,"") : "";
+  $("profileLocation").value = currentProfile.location_id || "";
+  $("profileInstagram").value = currentProfile.instagram_username || "";
+  $("profileBio").value = currentProfile.bio || "";
+  $("profileArea").value = currentProfile.locations?.area || "";
+  $("profilePhoto").value = "";
+  $("profileMessage").innerHTML = "";
+
+  openModal("profileModal");
+});
+
+$("heroProfileButton").addEventListener("click", () => $("profileButton").click());
+
+$("profileForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if(!currentSession || !currentProfile){
+    setMessage("profileMessage","error","Please sign in first.");
+    return;
+  }
+
+  const button = $("profileSubmit");
+  button.disabled = true;
+  button.textContent = "Saving profile...";
+  $("profileMessage").innerHTML = "";
+
+  try{
+    let avatarUrl = currentProfile.avatar_url || null;
+    const file = $("profilePhoto").files[0];
+
+    if(file){
+      if(file.size > 1024 * 1024){
+        throw new Error("Profile photo must be 1MB or smaller.");
+      }
+
+      const extension = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
+      const path = `${currentSession.user.id}/${Date.now()}.${extension}`;
+
+      const { error: uploadError } = await supabase
+        .storage
+        .from("avatars")
+        .upload(path,file,{contentType:file.type});
+
+      if(uploadError) throw uploadError;
+
+      const { data: publicData } = supabase
+        .storage
+        .from("avatars")
+        .getPublicUrl(path);
+
+      avatarUrl = publicData.publicUrl;
+    }
+
+    let username = $("profileUsername").value.trim().replace(/^@/,"");
+    username = username || null;
+
+    let instagram = $("profileInstagram").value.trim();
+    instagram = instagram || null;
+
+    const { error } = await supabase
+      .from("profiles")
+      .update({
+        display_name: $("profileName").value.trim(),
+        username,
+        location_id: $("profileLocation").value || null,
+        instagram_username: instagram,
+        bio: $("profileBio").value.trim() || null,
+        avatar_url: avatarUrl
+      })
+      .eq("id",currentProfile.id);
+
+    if(error) throw error;
+
+    await refreshCurrentUser();
+    await loadProfiles();
+
+    setMessage("profileMessage","success","Profile saved to HANJOBS.");
+
+  }catch(error){
+    setMessage("profileMessage","error",error.message || "Could not save profile.");
+  }finally{
+    button.disabled = false;
+    button.textContent = "Save Profile";
+  }
+});
+
+
+/* =====================================================
+   JOB POST / EDIT
+===================================================== */
+
+function requireAuth(action){
+  if(currentSession && currentProfile) return true;
+
+  setAuthMode("login");
+  openModal("authModal");
+  setMessage("authMessage","notice",`Sign in to ${action}.`);
+  return false;
+}
+
+function openPostModal(){
+  if(!requireAuth("post a Bro Job")) return;
+
+  editingJobId = null;
+  $("jobModalTitle").textContent = "Give a Bro a Job";
+  $("jobSubmit").textContent = "Post Opening";
+  $("jobForm").reset();
+  $("jobMessage").innerHTML = "";
+  openModal("jobModal");
+}
+
+$("postHeaderButton").addEventListener("click",openPostModal);
+$("heroPostButton").addEventListener("click",openPostModal);
+
+function openEditJob(job){
+  if(!requireAuth("edit a job")) return;
+
+  editingJobId = job.id;
+  $("jobModalTitle").textContent = "Edit Job";
+  $("jobSubmit").textContent = "Save Changes";
+  $("jobMessage").innerHTML = "";
+
+  $("jobTitle").value = job.title || "";
+  $("jobDescription").value = job.description || "";
+  $("jobLocation").value = job.locations?.id || "";
+  $("jobType").value = job.job_type || "Casual";
+  $("jobPay").value = job.pay || "";
+  $("jobRequirements").value = (job.requirements || []).join("\n");
+
+  if(job.start_at){
+    const dt = new Date(job.start_at);
+    const local = new Date(dt.getTime() - dt.getTimezoneOffset()*60000);
+    $("jobDateTime").value = local.toISOString().slice(0,16);
+  }else{
+    $("jobDateTime").value = "";
+  }
+
+  openModal("jobModal");
+}
+
+$("jobForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if(!currentSession || !currentProfile){
+    setMessage("jobMessage","error","Please sign in first.");
+    return;
+  }
+
+  const button = $("jobSubmit");
+  button.disabled = true;
+  button.textContent = editingJobId ? "Saving..." : "Posting...";
+  $("jobMessage").innerHTML = "";
+
+  try{
+    const requirements = $("jobRequirements").value
+      .split("\n")
+      .map(x => x.trim())
+      .filter(Boolean);
+
+    let startAt = null;
+    if($("jobDateTime").value){
+      startAt = new Date($("jobDateTime").value).toISOString();
+    }
+
+    const payload = {
+      title: $("jobTitle").value.trim(),
+      description: $("jobDescription").value.trim(),
+      location_id: $("jobLocation").value,
+      job_type: $("jobType").value,
+      pay: $("jobPay").value.trim() || null,
+      start_at: startAt,
+      requirements,
+      status:"active"
+    };
+
+    if(editingJobId){
+      const { error } = await supabase
+        .from("jobs")
+        .update(payload)
+        .eq("id",editingJobId)
+        .eq("owner_profile_id",currentProfile.id);
+
+      if(error) throw error;
+
+      setMessage("jobMessage","success","Job updated.");
+
+    }else{
+      const { error } = await supabase
+        .from("jobs")
+        .insert({
+          ...payload,
+          owner_profile_id: currentProfile.id,
+          is_demo:false
+        });
+
+      if(error) throw error;
+
+      setMessage("jobMessage","success","Job posted successfully.");
+    }
+
+    await loadJobs();
+    await loadProfiles();
+    await new Promise(resolve => setTimeout(resolve,500));
+    await renderDashboard();
+
+    setTimeout(()=>closeModal("jobModal"),700);
+
+  }catch(error){
+    setMessage("jobMessage","error",error.message || "Could not save the job.");
+  }finally{
+    button.disabled = false;
+    button.textContent = editingJobId ? "Save Changes" : "Post Opening";
+  }
+});
+
+
+/* =====================================================
+   JOB DETAIL + APPLY
+===================================================== */
+
+function viewJob(jobId){
+  const job = jobs.find(x => x.id === jobId);
+  if(!job) return;
+
+  const ownJob = currentProfile && job.owner_profile_id === currentProfile.id;
+
+  const requirements = (job.requirements || []).length
+    ? `
+      <div style="margin-top:18px;font-weight:900;color:#102a43;">Requirements</div>
+      <ul class="requirements">
+        ${(job.requirements || []).map(req => `<li>${escapeHTML(req)}</li>`).join("")}
+      </ul>
+    `
+    : "";
+
+  const demoMessage = job.is_demo
+    ? `<div class="demo-banner">DEMO JOB — this listing is included as example content. It is not currently accepting real applications.</div>`
+    : "";
+
+  const applyButton = job.is_demo
+    ? `<button class="btn btn-secondary" disabled>Demo Listing — No Applications</button>`
+    : ownJob
+      ? `<button class="btn btn-secondary" disabled>This is Your Job</button>`
+      : `<button class="btn btn-primary" onclick="startApplication('${job.id}')">Apply for This Bro Job</button>`;
+
+  $("jobDetailContent").innerHTML = `
+    ${demoMessage}
+
+    <div class="summary">
+      <div class="summary-title">${escapeHTML(job.title)}</div>
+      <div class="summary-meta">
+        ${escapeHTML(job.profiles?.display_name || "HANJOBS Employer")}
+        · ${escapeHTML(locationLabel(job.locations))}
+        · ${escapeHTML(job.job_type)}
+      </div>
+      <div style="margin-top:10px;font-weight:900;color:#198754;">
+        ${escapeHTML(moneyText(job))}
+      </div>
+    </div>
+
+    <div class="detail-description">
+      ${escapeHTML(job.description)}
+    </div>
+
+    ${requirements}
+
+    <div style="margin-top:24px;display:flex;gap:9px;flex-wrap:wrap;">
+      ${applyButton}
+    </div>
+  `;
+
+  openModal("detailModal");
+}
+
+function applyJob(jobId){
+  const job = jobs.find(x => x.id === jobId);
+  if(!job) return;
+  viewJob(jobId);
+}
+
+function startApplication(jobId){
+  if(!requireAuth("apply for a Bro Job")) return;
+
+  const job = jobs.find(x => x.id === jobId);
+  if(!job) return;
+
+  if(job.is_demo){
+    alert("This is a demo listing and does not accept real applications yet.");
+    return;
+  }
+
+  if(job.owner_profile_id === currentProfile.id){
+    alert("You cannot apply to your own job.");
+    return;
+  }
+
+  $("jobDetailContent").innerHTML = `
+    <div class="summary">
+      <div class="summary-title">Apply for ${escapeHTML(job.title)}</div>
+      <div class="summary-meta">
+        ${escapeHTML(job.profiles?.display_name || "HANJOBS Employer")}
+        · ${escapeHTML(locationLabel(job.locations))}
+      </div>
+    </div>
+
+    <form id="inlineApplicationForm">
+      <div class="field">
+        <label>Application Message</label>
+        <textarea id="inlineApplicationMessage" required placeholder="Tell the employer why you're a good fit."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
+      <div id="inlineApplicationMessageBox"></div>
+    </form>
+  `;
+
+  $("inlineApplicationForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const submit = event.target.querySelector("button[type='submit']");
+    submit.disabled = true;
+    submit.textContent = "Submitting application...";
+
+    try{
+      const { error } = await supabase
+        .from("applications")
+        .insert({
+          job_id:job.id,
+          applicant_profile_id:currentProfile.id,
+          message:$("inlineApplicationMessage").value.trim()
+        });
+
+      if(error) throw error;
+
+      setMessage(
+        "inlineApplicationMessageBox",
+        "success",
+        "Application submitted. The employer can now see your profile and application."
+      );
+
+      await renderDashboard();
+
+      setTimeout(()=>closeModal("detailModal"),900);
+
+    }catch(error){
+      setMessage(
+        "inlineApplicationMessageBox",
+        "error",
+        error.message || "Could not submit the application."
+      );
+    }finally{
+      submit.disabled = false;
+      submit.textContent = "Submit Application";
+    }
+  });
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function renderDashboardSignedOut(){
+  if(currentSession && currentProfile){
+    renderDashboard();
+  }else{
+    $("myJobs").innerHTML = `
+      <div class="empty-dashboard">
+        Sign in to see your jobs and applicants.
+        <br><br>
+        <button class="btn btn-primary" onclick="openAuthFromDashboard()">Sign In</button>
+      </div>
+    `;
+
+    $("myApplications").innerHTML = `
+      <div class="empty-dashboard">
+        Sign in to track applications and completed jobs.
+      </div>
+    `;
+  }
+}
+
+function openAuthFromDashboard(){
+  setAuthMode("login");
+  openModal("authModal");
+}
+
+async function renderDashboard(){
+  if(!currentSession || !currentProfile){
+    renderDashboardSignedOut();
+    return;
+  }
+
+  await Promise.all([
+    renderMyJobs(),
+    renderMyApplications()
+  ]);
+}
+
+async function renderMyJobs(){
+  const { data, error } = await supabase
+    .from("jobs")
+    .select(`
+      id,
+      title,
+      location_id,
+      job_type,
+      pay,
+      status,
+      created_at,
+      is_demo,
+      locations(id,county,town,area)
+    `)
+    .eq("owner_profile_id",currentProfile.id)
+    .order("created_at",{ascending:false});
+
+  if(error){
+    $("myJobs").innerHTML = `<div class="error">${escapeHTML(error.message)}</div>`;
+    return;
+  }
+
+  if(!data?.length){
+    $("myJobs").innerHTML = `
+      <div class="empty-dashboard">
+        You haven't posted a job yet.
+        <br><br>
+        <button class="btn btn-primary" onclick="openPostModal()">Give a Bro a Job</button>
+      </div>
+    `;
+    return;
+  }
+
+  let html = "";
+
+  for(const job of data){
+    const { data: applications, error: appError } = await supabase
+      .from("applications")
+      .select(`
+        id,
+        message,
+        status,
+        applied_at,
+        applicant_profile_id,
+        profiles!applications_applicant_profile_id_fkey(
+          id,
+          display_name,
+          username,
+          avatar_url,
+          jobs_completed,
+          average_rating,
+          instagram_username,
+          locations(id,county,town,area)
+        )
+      `)
+      .eq("job_id",job.id)
+      .order("applied_at",{ascending:false});
+
+    if(appError) console.error(appError);
+
+    html += `
+      <div class="my-job">
+
+        <div class="my-job-head">
+          <div>
+            <h4>${escapeHTML(job.title)}</h4>
+            <small>
+              ${escapeHTML(locationLabel(job.locations))}
+              · ${escapeHTML(job.job_type)}
+              · ${escapeHTML(job.pay || "Pay not specified")}
+            </small>
+          </div>
+
+          <span class="status status-${escapeHTML(job.status)}">
+            ${escapeHTML(job.status)}
+          </span>
+        </div>
+
+        <div class="my-job-actions">
+          <button class="btn btn-secondary" onclick="openEditJob(${JSON.stringify(job).replaceAll('"','&quot;')})">Edit</button>
+          <button class="btn btn-danger" onclick="deleteJob('${job.id}')">Delete</button>
+        </div>
+
+        <div style="margin-top:14px;font-size:13px;font-weight:900;color:#102a43;">
+          ${applications?.length || 0} applicant${applications?.length===1?"":"s"}
+        </div>
+
+        ${(applications || []).length
+          ? applications.map(renderApplicantRow).join("")
+          : `<div style="margin-top:9px;color:#68788c;font-size:12px;">No applications yet.</div>`}
+
+      </div>
+    `;
+  }
+
+  $("myJobs").innerHTML = html;
+}
+
+function renderApplicantRow(application){
+  const profile = application.profiles;
+
+  return `
+    <div class="applicant">
+      <div class="applicant-main">
+
+        <div class="applicant-avatar">
+          ${profile?.avatar_url
+            ? `<img src="${escapeHTML(profile.avatar_url)}" alt="">`
+            : escapeHTML(initials(profile?.display_name))}
+        </div>
+
+        <div>
+          <div class="applicant-name">
+            ${escapeHTML(profile?.display_name || "HANJOBS User")}
+          </div>
+
+          <div class="applicant-meta">
+            ${escapeHTML(locationLabel(profile?.locations))}
+            · ${escapeHTML(profile?.jobs_completed || 0)} jobs completed
+          </div>
+
+          <div class="applicant-rating">
+            ${profile?.average_rating > 0
+              ? "★".repeat(Math.round(profile.average_rating)) + " " + Number(profile.average_rating).toFixed(1)
+              : "No rating yet"}
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <span class="status status-${escapeHTML(application.status)}">
+          ${escapeHTML(application.status)}
+        </span>
+
+        <div class="applicant-buttons" style="margin-top:8px;">
+          <button
+            class="btn btn-secondary"
+            onclick="viewProfile('${profile?.id}')"
+          >
+            Profile
+          </button>
+
+          ${(application.status === "applied" || application.status === "under_review")
+            ? `
+              <button class="btn btn-success" onclick="updateApplication('${application.id}','accepted')">Accept</button>
+              <button class="btn btn-danger" onclick="updateApplication('${application.id}','declined')">Decline</button>
+            `
+            : ""}
+
+          ${application.status === "accepted"
+            ? `<button class="btn btn-success" onclick="updateApplication('${application.id}','completed')">Mark Completed</button>`
+            : ""}
+
+          ${application.status === "completed"
+            ? `<button class="btn btn-secondary" onclick="rateApplicant('${application.id}','${profile?.id}','${escapeHTML(profile?.display_name || "Bro")}')">Rate Bro</button>`
+            : ""}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+async function updateApplication(applicationId,status){
+  try{
+    const { error } = await supabase
+      .from("applications")
+      .update({status})
+      .eq("id",applicationId);
+
+    if(error) throw error;
+
+    await loadJobs();
+    await loadProfiles();
+    await renderDashboard();
+    await loadCompletedHighlights();
+
+  }catch(error){
+    alert(error.message || "Could not update application.");
+  }
+}
+
+async function deleteJob(jobId){
+  if(!confirm("Delete this job? This cannot be undone.")) return;
+
+  try{
+    const { error } = await supabase
+      .from("jobs")
+      .delete()
+      .eq("id",jobId)
+      .eq("owner_profile_id",currentProfile.id);
+
+    if(error) throw error;
+
+    await loadJobs();
+    await renderDashboard();
+
+  }catch(error){
+    alert(error.message || "Could not delete job.");
+  }
+}
+
+async function renderMyApplications(){
+  const { data, error } = await supabase
+    .from("applications")
+    .select(`
+      id,
+      message,
+      status,
+      applied_at,
+      job_id,
+      jobs!applications_job_id_fkey(
+        id,
+        title,
+        owner_profile_id,
+        pay,
+        job_type,
+        status,
+        locations(id,county,town,area),
+        profiles!jobs_owner_profile_id_fkey(
+          id,
+          display_name,
+          username
+        )
+      )
+    `)
+    .eq("applicant_profile_id",currentProfile.id)
+    .order("applied_at",{ascending:false});
+
+  if(error){
+    $("myApplications").innerHTML = `<div class="error">${escapeHTML(error.message)}</div>`;
+    return;
+  }
+
+  if(!data?.length){
+    $("myApplications").innerHTML = `
+      <div class="empty-dashboard">
+        You haven't applied for any jobs yet.
+        <br><br>
+        <a class="btn btn-primary" href="#jobs">Find Jobs</a>
+      </div>
+    `;
+    return;
+  }
+
+  $("myApplications").innerHTML = data.map(application => {
+    const job = application.jobs;
+    const employer = job?.profiles;
+
+    return `
+      <div class="my-job">
+
+        <div class="my-job-head">
+          <div>
+            <h4>${escapeHTML(job?.title || "Job")}</h4>
+            <small>
+              ${escapeHTML(employer?.display_name || "Employer")}
+              · ${escapeHTML(locationLabel(job?.locations))}
+            </small>
+          </div>
+
+          <span class="status status-${escapeHTML(application.status)}">
+            ${escapeHTML(application.status)}
+          </span>
+        </div>
+
+        <div style="margin-top:8px;color:#68788c;font-size:12px;">
+          Applied ${new Date(application.applied_at).toLocaleDateString()}
+        </div>
+
+        ${application.status === "completed"
+          ? `
+            <div class="my-job-actions">
+              <button
+                class="btn btn-secondary"
+                onclick="rateEmployer('${application.id}','${employer?.id}','${escapeHTML(employer?.display_name || "Employer")}')"
+              >
+                Rate Employer
+              </button>
+            </div>
+          `
+          : ""}
+
+      </div>
+    `;
+  }).join("");
+}
+
+
+/* =====================================================
+   RATINGS
+===================================================== */
+
+function openRating(applicationId, rateeId, rateeName){
+  selectedApplicationForRating = {
+    applicationId,
+    rateeId,
+    rateeName
+  };
+
+  $("ratingSummary").innerHTML = `
+    <strong>${escapeHTML(rateeName)}</strong>
+    <div style="margin-top:5px;color:#68788c;font-size:13px;">
+      Rate the completed HANJOBS job.
+    </div>
+  `;
+
+  $("ratingForm").reset();
+  $("ratingMessage").innerHTML = "";
+  openModal("ratingModal");
+}
+
+function rateEmployer(applicationId, rateeId, rateeName){
+  openRating(applicationId,rateeId,rateeName);
+}
+
+function rateApplicant(applicationId, rateeId, rateeName){
+  openRating(applicationId,rateeId,rateeName);
+}
+
+$("ratingForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+
+  if(!currentSession || !currentProfile || !selectedApplicationForRating){
+    setMessage("ratingMessage","error","Please sign in first.");
+    return;
+  }
+
+  try{
+    const { data: app, error: appError } = await supabase
+      .from("applications")
+      .select("id,job_id,status")
+      .eq("id",selectedApplicationForRating.applicationId)
+      .single();
+
+    if(appError) throw appError;
+    if(app.status !== "completed") throw new Error("This job is not completed yet.");
+
+    const { error } = await supabase
+      .from("ratings")
+      .insert({
+        application_id:app.id,
+        job_id:app.job_id,
+        reviewer_profile_id:currentProfile.id,
+        reviewed_profile_id:selectedApplicationForRating.rateeId,
+        rating:Number($("ratingValue").value),
+        review:$("ratingReview").value.trim() || null
+      });
+
+    if(error) throw error;
+
+    setMessage("ratingMessage","success","Rating submitted.");
+
+    await loadProfiles();
+    await renderDashboard();
+
+    setTimeout(()=>closeModal("ratingModal"),800);
+
+  }catch(error){
+    setMessage("ratingMessage","error",error.message || "Could not submit rating.");
+  }
+});
+
+
+/* =====================================================
+   NAV BUTTONS
+===================================================== */
+
+$("heroSearchButton").addEventListener("click",()=>{
+  $("jobSearch").value = $("heroSearch").value;
+  renderJobs();
+  scrollTo("jobs");
+});
+
+$("heroSearch").addEventListener("keydown",event=>{
+  if(event.key === "Enter"){
+    event.preventDefault();
+    $("heroSearchButton").click();
+  }
+});
+
+
+/* =====================================================
+   MODAL CLOSES
+===================================================== */
+
+document.querySelectorAll("[data-close]").forEach(button=>{
+  button.addEventListener("click",()=>closeModal(button.dataset.close));
+});
+
+document.querySelectorAll(".modal-bg").forEach(backdrop=>{
+  backdrop.addEventListener("click",event=>{
+    if(event.target === backdrop){
+      backdrop.classList.add("hidden");
+    }
+  });
+});
+
+document.addEventListener("keydown",event=>{
+  if(event.key === "Escape"){
+    document.querySelectorAll(".modal-bg").forEach(modal=>modal.classList.add("hidden"));
+  }
+});
+
+
+/* =====================================================
+   STARTUP
+===================================================== */
+
+(async function init(){
+  try{
+    const { data } = await supabase.auth.getSession();
+    currentSession = data.session;
+    await loadAll();
+  }catch(error){
+    console.error(error);
+  }
+})();
+
+</script>
+
+</body>
+</html>
